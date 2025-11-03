@@ -2,7 +2,7 @@
 #import "@preview/physica:0.9.7": vb, vu, dprod, cprod, rank
 
 #show: styling.with(
-  course-name: "Linear Algebra",
+  course-name: "Linjär Algebra",
   course-code: "SF1672",
   title-size: 30pt,
   title-space: 0em, 
@@ -15,18 +15,22 @@
   contents: false,
 )
 
-Inner product:
+Inre produkt:
 $ mat(1, 2 , 3) mat(1; 1; 2) = mat(1 + 2 + 6) = mat(9) $
 
-incidens i $RR^3$ {översätt}
-- line--plane
+Incidens i $RR^3$:
+- linje--plan
 
-  Substitute the parameter form of the line into the general form of the plane.
+  Substituera linjens parameterform in i planets allmänna ekvation.
 
-- line--line
+- linje--linje
 
-  Equation system of parameter forms.
+  Ekvationssystem av parameterformerna.
 
-- plane--plane
+- plan--plan
+
+  Forma en vektor mellan två godtyckliga punkter av linjerna på parameterform.
+  Sätt dess skalärprodukt med vardera linjes riktningsvektor till noll.
+  Lös ekvationssystemet 
 
 #v(40em)
