@@ -161,3 +161,8 @@
       ]
   )
 }
+
+
+// Add notation
+#let vector(symbol) = {math.upright(math.bold(symbol))}
+#let unit(symbol) = {math.accent(vector(symbol), math.hat)} // Unit vector
