@@ -105,6 +105,8 @@
   // Math
   set math.mat(delim: "[")
   set math.vec(delim: "[")
+  show math.mat: math.display
+  show math.vec: math.display
   show math.equation.where(block: false): set math.frac(style: "horizontal")
   
   show: super-T-as-transpose
@@ -142,7 +144,7 @@
 #let (corollary-counter, corollary-box, corollary, show-corollary) = make-frame(
   "corollary",
   theorion-i18n-map.at("corollary"),
-  counter: theorem-counter,
+  counter: theorem-counter, // Has 2 inherited levels by default.
   render: render-fn.with(fill: red.darken(20%)),
 )
 
@@ -151,6 +153,13 @@
   theorion-i18n-map.at("lemma"),
   counter: theorem-counter,
   render: render-fn.with(fill: red.darken(20%)),
+)
+
+#let (definition-counter, definition-box, definition, show-definition) = make-frame(
+  "definition",
+  theorion-i18n-map.at("definition"),
+  inherited-levels: 2, // Create new counter.
+  render: render-fn.with(fill: orange),
 )
 
 #let compact-restate(labels) = {
@@ -169,8 +178,8 @@
 #let ve(symbol) = math.upright(math.bold(symbol)) // Vector
 #let uve(symbol) = math.accent(vector(symbol), math.hat) // Unit vector
 
-#let col = math.op("Col") // Column space
-#let row = math.op("Row") // Row space
+#let col = math.op("col") // Column space
+#let row = math.op("row") // Row space
 #let im = math.op("im") // Image
 #let coker = math.op("coker") // Cokernel
 #let span = math.op("span") // Span
