@@ -15,6 +15,7 @@
   margin: 0.5cm, // 0.5 for computer, 0.1 for phone (cm)
   width: 11cm,   // 16 for computer, 8 for phone (cm)
   height: auto,
+  end-space: 0em,
   heading-break: false,
   contents: false,
 
@@ -133,6 +134,7 @@
   if contents {outline()}
 
   doc
+  v(end-space)
 }
 
 
@@ -164,5 +166,15 @@
 
 
 // Add notation
-#let vector(symbol) = {math.upright(math.bold(symbol))}
-#let unit(symbol) = {math.accent(vector(symbol), math.hat)} // Unit vector
+#let ve(symbol) = math.upright(math.bold(symbol)) // Vector
+#let uve(symbol) = math.accent(vector(symbol), math.hat) // Unit vector
+
+#let col = math.op("Col") // Column space
+#let row = math.op("Row") // Row space
+#let im = math.op("im") // Image
+#let coker = math.op("coker") // Cokernel
+#let span = math.op("span") // Span
+#let rank = math.op("rank") // Rank
+#let nullity = math.op("nullity") // Nullity
+
+#let ort = math.tack.t // Orthogonal
