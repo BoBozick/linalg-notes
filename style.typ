@@ -162,6 +162,12 @@
   render: render-fn.with(fill: orange),
 )
 
+#let warning-box = note-box.with(
+  fill: rgb("#8250DF"),
+  title: theorion-i18n-map.at("warning"),
+  icon-name: "alert",
+)
+
 #let compact-restate(labels) = {
   theorion-restate(
     filter: it => labels.contains(it.label),
