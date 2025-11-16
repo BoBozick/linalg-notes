@@ -19,6 +19,8 @@
   heading-break: false,
   contents: false,
 
+  images: true,
+
   doc
 ) = {
   // Headings
@@ -122,9 +124,15 @@
   )
 
   // Graphics
-  show image: it => align(center, it)
   show math.equation.where(block: false): box // Prevent line wrapping.
   show: show-theorion
+  show image: it => {
+    if not images {
+      {} // Display nothing.
+    } else {
+      align(center, it) // Display the image centered.
+    }
+  }
 
   // Make document
   if course-name != "" {

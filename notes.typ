@@ -13,6 +13,8 @@
   end-space: 0em,
   heading-break: false,
   contents: true,
+
+  images: true,
 )
 
 #image("image-4.png")
@@ -20,6 +22,28 @@
 = Vector Spaces
 
 == Definitions
+
+#definition(title: [Group])[
+  A group is a set $G$ with a binary operation $*$ such that
+  + (Closure) For all $a, b$ in $G$, $a * b$ is in $G$,
+  + (Associativity) For all $a, b, c$ in $G$, $(a * b) * c = a * (b * c)$,
+  + (Identity) There exists $e$ in $G$ such that $e * a = a * e = a$ for all $a$ in $G$,
+  + (Inverse) For each $a$ in $G$, there exists $a^(-1)$ in $G$ such that $a * a^(-1) = a^(-1) * a = e$.
+]
+
+#definition(title: [Abelian Group])[
+  An abelian group is a group $(G, *)$ in which
+  the operation $*$ is commutative.
+  That is, for all $a, b$ in $G$, $a * b = b * a$.
+]
+
+#definition(title: [Field])[
+  A field is a set $F$ with two binary operations $+$ and $dot$ such that
+  + $(F, +)$ is an abelian group with identity $0$,
+  + $(F\\{0}, dot)$ is an abelian group with identity $1$,
+  + Multiplication distributes over addition:\
+    for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
+]
 
 #definition(title: [Field])[
   A field is a set $F$ with operations $+$ and $dot$ such that
@@ -61,7 +85,8 @@
 ]
 
 #warning-box[
-  $RR^2$ is not a subspace of $RR^3$. However, the set ${(s, t, 0) : s, t in RR}$ is a subspace of $RR^3$.
+  $RR^2$ is not a subspace of $RR^3$.
+  However, the set ${(s, t, 0) : s, t in RR}$ is a subspace of $RR^3$.
 ]
 
 #definition(title: [Span])[
@@ -81,7 +106,8 @@
   A basis for a vector space $V$ is a set $B = {ve(b)_1, ..., ve(b)_n}$
   of linearly independent vectors that span $V$.
 
-  #example()[The set ${ve(e)_1, ..., ve(e)_n}$ is the standard basis for $RR^n$,
+  #example()[The set ${ve(e)_1, ..., ve(e)_n}$ is
+  the standard basis for $RR^n$,
   and the set ${1, t, t^2, ..., t^n}$ is the standard basis for $P_n$.
   ]
 ]
@@ -108,7 +134,8 @@
   and
   $ (P_(C<-B))^(-1) = P_(B<-C). $
 
-  #example[Let $E$ be the standard basis and let $P_(E<-B)$ and $P_(E<-C)$ be given.
+  #example[Let $E$ be the standard basis and
+  let $P_(E<-B)$ and $P_(E<-C)$ be given.
     $ P_(C<-B) = P_(C<-E) P_(E<-B) = (P_(E<-C))^(-1) P_(E<-B). $
   ]
 ]
@@ -136,22 +163,24 @@
 
 #image("image-3.png")
 
-== Matrix Forms
+== Linear Systems
 
-#definition(title: [Matrix Forms])[
+#definition(title: [Echelon Form])[
   - Row Echelon Form (REF): \
     Pivots move to the right as you go down, with zeros below each pivot.
 
   - Reduced Row Echelon Form (RREF): \
     REF plus each pivot is 1 and is the only nonzero entry in its column.
     Canonical, i.e., unique.
+]
 
-  - Upper/Lower Triangular Form: \
-    The diagonal entries of the triangular form are the eigenvalues of the original.
+#warning-box()[
+  Some also require pivots to start with 1 for REF.
 ]
 
 #definition(title: [Consistent])[
-  A linear system $A ve(x) = ve(b)$ is consistent if it has at least one solution.
+  A linear system $A ve(x) = ve(b)$ is consistent
+  if it has at least one solution.
 ]
 
 #theorem(title: [Echelon Test])[
@@ -182,7 +211,8 @@
   + $A$ is row equivalent to the $n times n$ identity matrix
   + $A$ can be expressed as a product of elementary matrices
   + $A ve(x) = ve(0)$ has only the trivial solution
-  + $A ve(x) = ve(b)$ has at least (and thus exactly) one solution for each $ve(b)$
+  + $A ve(x) = ve(b)$ has at least (and thus exactly)
+    one solution for each $ve(b)$
     \ \
   + the columns of $A$ are linearly independent, forming a basis for $RR^n$
   + $col A = RR^n$
@@ -195,7 +225,8 @@
     \ \
   + $T(ve(x)) = A ve(x)$ is injective
   + $T(ve(x)) = A ve(x)$ is surjective
-  + $T(ve(x)) = A ve(x)$ is bijective, having $im T = RR^n$ and an inverse $T^(-1)$
+  + $T(ve(x)) = A ve(x)$ is bijective,
+    having $im T = RR^n$ and an inverse $T^(-1)$
     \ \
   + $A$ has $n$ nonzero singular values
   + $det A != 0$
@@ -215,12 +246,24 @@
 == Eigenvalues
 
 #definition(title: [Eigenvalues and Eigenvectors])[
-  An eigenvalue $lambda$ with eigenvector $ve(x) != ve(0)$
+  An eigenvalue $lambda$ with the eigenvector $ve(x) != ve(0)$
   of a matrix $A$ satisfies
-  $ A ve(x) = lambda ve(x). $
+  $ A ve(x) = lambda ve(x) <==> (A - lambda I) ve(x) = ve(0) $
   The eigenvalues are found from the characteristic equation
   $ det(A - lambda I) = 0. $
 ]
+
+#theorem()[
+  The eigenvalues of a triangular matrix are the entries on its diagonal.
+]
+// TODO fix this:
+Let $lambda$ be an eigenvalue of a triangular matrix $A$.
+Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
+that gives a free 
+
+  - Upper/Lower Triangular Form: \
+    The diagonal entries of the triangular form are
+    the eigenvalues of the original.
 
 #image("image-2.png")
 
@@ -263,7 +306,8 @@
 
 #theorem(title: [Left/Right Inverse])[
   If a linear transformation has a right inverse then it is surjective,
-  and if it has a left inverse then it is injective.
+  if it has a left inverse then it is injective,
+  and if it has both it is bijective.
 ]
 
 = Geometry
@@ -287,7 +331,8 @@ $ mat(1, 2 , 3) mat(1; 1; 2) = mat(1 + 2 + 6) = mat(9) $
 
   - plane--plane
 
-    Construct a vector between two arbitrary points (one on each plane) given in parametric form.
+    Construct a vector between two arbitrary points (one on each plane)
+    given in parametric form.
     Set its dot product with each plane's normal vector to zero.
     Solve the resulting system of equations.
 ]
@@ -302,5 +347,6 @@ $ mat(1, 2 , 3) mat(1; 1; 2) = mat(1 + 2 + 6) = mat(9) $
 ]
 
 #warning-box()[
-  Pay special attention to the placement of the minus sign for the $y$-axis rotation.
+  Pay special attention to the placement of the minus sign for
+  the $y$-axis rotation.
 ]
