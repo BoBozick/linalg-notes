@@ -24,30 +24,26 @@
 == Definitions
 
 #definition(title: [Group])[
-  A group is a set $G$ with a binary operation $*$ such that
-  + (Closure) For all $a, b$ in $G$, $a * b$ is in $G$,
-  + (Associativity) For all $a, b, c$ in $G$, $(a * b) * c = a * (b * c)$,
-  + (Identity) There exists $e$ in $G$ such that $e * a = a * e = a$ for all $a$ in $G$,
-  + (Inverse) For each $a$ in $G$, there exists $a^(-1)$ in $G$ such that $a * a^(-1) = a^(-1) * a = e$.
-]
+  A _group_ is a set $G$ with a binary operation $*$ such that
+  for all $a, b, c in G$,
+  + (Closure) $a * b in G$
+  + (Associativity) $(a * b) * c = a * (b * c)$
+  + (Identity) $exists e in G : e * a = a * e = a$ 
+  + (Inverse) $exists a^(-1) in G : a * a^(-1) = a^(-1) * a = e$
 
-#definition(title: [Abelian Group])[
-  An abelian group is a group $(G, *)$ in which
-  the operation $*$ is commutative.
-  That is, for all $a, b$ in $G$, $a * b = b * a$.
+  Additionally, a group is said to be _abelian_ if
+  5. (Commutative) $a * b = b * a$
 ]
 
 #definition(title: [Field])[
   A field is a set $F$ with two binary operations $+$ and $dot$ such that
-  + $(F, +)$ is an abelian group with identity $0$,
-  + $(F\\{0}, dot)$ is an abelian group with identity $1$,
+  + $(F, +)$ is an abelian group with identity $0$.
+  + $(F\\{0}, dot)$ is an abelian group with identity $1$.
   + Multiplication distributes over addition:\
     for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
-]
 
-#definition(title: [Field])[
-  A field is a set $F$ with operations $+$ and $dot$ such that
-  + $0 + a = a + 0 = a$
+  That is, it holds that
+    + $0 + a = a + 0 = a$
   + $(a + b) + c = a + (b + c)$
   + $a + b = b + a$
   + there exists $(-a)$ with $a + (-a) = 0$
@@ -133,12 +129,27 @@
   $ vec(ve(x))_C = P_(C<-B) vec(ve(x))_B $
   and
   $ (P_(C<-B))^(-1) = P_(B<-C). $
-
-  #example[Let $E$ be the standard basis and
-  let $P_(E<-B)$ and $P_(E<-C)$ be given.
-    $ P_(C<-B) = P_(C<-E) P_(E<-B) = (P_(E<-C))^(-1) P_(E<-B). $
-  ]
 ]
+
+#problem[For a vector space in $RR^n$,
+  let $E$ be the standard basis and the bases $B$ and $C$ be given.
+  Find the change-of-basis matrix from $B$ to $C$.
+]
+
+#solution[The change-of-basis matrices give
+  $ P_(C<-B) = P_(C<-E) P_(E<-B) = (P_(E<-C))^(-1) P_(E<-B). $
+]
+
+#solution(title: [Alternative solution])[For simplicity
+  assume that the dimension is $n = 2$.
+  The bases of $B$ in $C$-coordinates $ve(v)_1$ and $ve(v)_2$ satisfy
+  $ mat(ve(c)_1, ve(c)_2)_E mat(ve(v)_1, ve(v)_2)_C  = 
+  mat(ve(b)_1, ve(b)_2)_E mat(I)_B, $
+  thus being given by reducing
+  $ mat(ve(c)_1, ve(c)_2, |, ve(b)_1, ve(b)_2)
+  ~ mat(I, |, ve(v)_1, ve(v)_2). $
+]
+
 
 == Dimension
 
@@ -175,7 +186,7 @@
 ]
 
 #warning-box()[
-  Some also require pivots to start with 1 for REF.
+  Some authors also require pivots to start with 1 for REF.
 ]
 
 #definition(title: [Consistent])[
@@ -256,14 +267,11 @@
 #theorem()[
   The eigenvalues of a triangular matrix are the entries on its diagonal.
 ]
+
 // TODO fix this:
 Let $lambda$ be an eigenvalue of a triangular matrix $A$.
 Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
 that gives a free 
-
-  - Upper/Lower Triangular Form: \
-    The diagonal entries of the triangular form are
-    the eigenvalues of the original.
 
 #image("image-2.png")
 
