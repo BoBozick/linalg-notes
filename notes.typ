@@ -1,4 +1,5 @@
 #import "style.typ": *
+#import "@preview/physica:0.9.7": iprod
 
 #show: styling.with(
   course-name: "Linear Algebra",
@@ -211,6 +212,13 @@
   All elementary matrices are invertible.
 ]
 
+#theorem(title: [Determinant Properties])[
+  Let $A$ and $B$ be $n times n$ matrices.
+  + $det A B = (det A)(det B$)
+  + $det A^T = det A$
+  + $det A = a_11 a_22 dots.h.c a_(n n)$ if $A$ is triangular
+]
+
 #theorem(title: [Invertible])[
   Let $A$ be an $n times n$ matrix. Then it is equivalent that
   + $A$ is invertible
@@ -221,9 +229,10 @@
   + $A$ has $n$ pivot positions
   + $A$ is row equivalent to the $n times n$ identity matrix
   + $A$ can be expressed as a product of elementary matrices
-  + $A ve(x) = ve(0)$ has only the trivial solution
   + $A ve(x) = ve(b)$ has at least (and thus exactly)
     one solution for each $ve(b)$
+  + $A ve(x) = ve(0)$ has only the trivial solution
+  + 0 is _not_ an eigenvalue of $A$
     \ \
   + the columns of $A$ are linearly independent, forming a basis for $RR^n$
   + $col A = RR^n$
@@ -254,14 +263,27 @@
   The pivot columns of a matrix form a basis for its column space.
 ]
 
-== Eigenvalues
+== Eigenvalues and Eigenvectors
 
-#definition(title: [Eigenvalues and Eigenvectors])[
+#definition(title: [Eigenstuff])[
   An eigenvalue $lambda$ with the eigenvector $ve(x) != ve(0)$
   of a matrix $A$ satisfies
-  $ A ve(x) = lambda ve(x) <==> (A - lambda I) ve(x) = ve(0) $
+  $ A ve(x) = lambda ve(x) "or, equivalently," (A - lambda I) ve(x) = ve(0). $
   The eigenvalues are found from the characteristic equation
-  $ det(A - lambda I) = 0. $
+  $ det(A - lambda I) = 0, $
+  which for each eigenvalue gives the eigenvectors as the solutions to
+  $ (A - lambda I) ve(x) = ve(0) $
+  and the eigenspace as
+  $ E_lambda = ker(A - lambda I), $
+  which is a subspace of $RR^n$.
+  
+  The number of occurances for a root to the characteristic equation
+  is that eigenvalue's algebraic multiplicity.
+]
+
+#note-box()[
+  Although the eigenvector must be nonzero, the eigenvalue may be zero,
+  which it is if and only if the matrix is not invertible.
 ]
 
 #theorem()[
@@ -271,7 +293,33 @@
 // TODO fix this:
 Let $lambda$ be an eigenvalue of a triangular matrix $A$.
 Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
-that gives a free 
+that gives a free
+
+#theorem()[
+  If $ve(v)_1, ..., ve(v)_r$ eigenvectors corresponding to distinct
+  eigenvalues $lambda_1, ..., lambda_r$ of an $n times n$ matrix,
+  then they are linearly independent.
+]
+
+#definition(title: [Similarity])[
+  If $A$ and $B$ are $n times n$ matrices such that there exists $P$ with
+  $ P^(-1) A P = B "or, equivalently," A = P B P^(-1). $
+]
+
+#theorem()[
+  If two matrices are similar, then they share eigenvalues.
+
+  However, the reverse is not implied.
+]
+
+#theorem(title: [Diagonalization])[
+  For an $n times n$ matrix $A$ it is equivalent that
+  + $A$ is diagonalizable.
+  + $A$ has $n$ linearly independent eigenvectors.
+  + There exists an invertible matrix $P$ and a diagonal matrix $D$ such that
+    $A = P^(-1) D P$.
+    In fact, $P$ is the eigenvectors and $D$ is the eigenvalues.
+]
 
 #image("image-2.png")
 
@@ -322,9 +370,69 @@ that gives a free
 
 == Inner Products
 
-Inner product:
+#definition(title: [Inner Product])[
+  The inner product for a real vector space $V$ is function
+  $ iprod(x, y) : V times V -> RR $
+  that is
+  + bilinear
+  + symmetric
+  + positive definite
+]
 
-$ mat(1, 2 , 3) mat(1; 1; 2) = mat(1 + 2 + 6) = mat(9) $
+#definition(title: [Inner Product Space])[
+  An inner product space is a vector space and its inner product.
+
+  #example(title: [Examples])[
+  + $V = RR^n$, $iprod(x, y) = x dot y$
+  + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = 3 x_1 y_1 + 5 x_2 y_2$
+  + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = x_1 y_1 + x_2 y_2
+    + (x_1 y_2 + x_2 y_1)/2$
+  + $V = PP^n$ // TODO
+  + $V = C^0 ([-1, 1]), iprod(f, g) = integral_(-1)^1 f(t) d(t) dif t$ // TODO
+  ]
+]
+
+#definition(title: [Norm])[
+  In an inner product space, the norm is defined as
+  $ norm(ve(x)) = sqrt(iprod(ve(x), ve(x))). $
+]
+
+== Orthogonality
+
+#definition(title: [Orthogonality])[
+  The vectors $ve(x)$ and $ve(y)$ in an inner product space are orthogonal,
+  written $x ort y$, if and only if $iprod(x, y) = 0$.
+]
+
+#note-box()[
+  The zero-vector is orthogonal to all vectors.
+]
+
+#definition(title: [Orthogonal Complement])[
+  The orthogonal complement to a subset $S$ of a vector space $V$ is
+  $ S^ort = {ve(x) in V : ve(x) ort ve(s) space  forall ve(s) in S}. $
+]
+
+#definition(title: [Orthogonal Set])[
+  A set $S subset.eq V$ is orthogonal if
+  $ve(x) ort ve(y)$ for every $ve(x) != ve(y) in S$.
+  The set is also orthonormal (ON) if
+  $ve(x)$ for every $ve(x) in S$.
+]
+
+#theorem()[
+  Orthogonal sets of nonzero vectors are linearly independent.
+
+  #proof // TODO
+]
+
+#theorem()[
+  Let $B = (ve(b)_1, ..., ve(b)_n)$ be an ON-basis to an inner product space $V$
+  of which $ve(x) in V$. Then,
+  $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)) $
+
+  #proof // TODO
+]
 
 == $RR^3$
 
