@@ -15,7 +15,7 @@
   heading-break: false,
   contents: true,
 
-  images: true,
+  memes: true,
 )
 
 #image("image-4.png")
@@ -74,7 +74,7 @@
 
 #definition(title: [Subspace])[
   A subspace of a vector space $V$ is a subset $H$ that is
-  + nonempty (e.g. $ve(0) in H$),
+  + nonempty (e.g., $ve(0) in H$),
   + closed under addition, and
   + closed under scalar multiplication.
 
@@ -317,11 +317,19 @@ that gives a free
   + $A$ is diagonalizable.
   + $A$ has $n$ linearly independent eigenvectors.
   + There exists an invertible matrix $P$ and a diagonal matrix $D$ such that
-    $A = P^(-1) D P$.
+    $A = P D P^(-1)$.
     In fact, $P$ is the eigenvectors and $D$ is the eigenvalues.
 ]
 
-#image("image-2.png")
+#tip-box()[
+  To avoid computing $P^(-1)$, simply verify that $A P = P D.$
+  This is equivalent to $A = P D P^(1)$ when $P$ is invertible
+  (which you should verify).
+]
+
+#image("image-5.png")
+
+#image("image-2.png") <meme>
 
 = Linear Maps
 

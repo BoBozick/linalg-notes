@@ -19,7 +19,7 @@
   heading-break: false,
   contents: false,
 
-  images: true,
+  memes: true,
 
   doc
 ) = {
@@ -124,15 +124,10 @@
   )
 
   // Graphics
-  show math.equation.where(block: false): box // Prevent line wrapping.
   show: show-theorion
-  show image: it => {
-    if not images {
-      {} // Display nothing.
-    } else {
-      align(center, it) // Display the image centered.
-    }
-  }
+  show math.equation.where(block: false): box // Prevent line wrapping.
+  show image: it => align(center, it)
+  show <meme>: it => if not memes {}
 
   // Make document
   if course-name != "" {
