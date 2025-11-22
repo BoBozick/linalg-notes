@@ -124,10 +124,11 @@
   )
 
   // Graphics
-  show: show-theorion
   show math.equation.where(block: false): box // Prevent line wrapping.
+  show <meme>: it => if not memes {} else {it}
   show image: it => align(center, it)
-  show <meme>: it => if not memes {}
+  
+  show: show-theorion
 
   // Make document
   if course-name != "" {

@@ -18,7 +18,7 @@
   memes: true,
 )
 
-#image("image-4.png")
+#image("image-4.png") <meme>
 
 = Vector Spaces
 
@@ -160,7 +160,7 @@
 ]
 
 #definition(title: [Rank and Nullity])[
-  The rank of a linear transformation (or matrix)
+  The rank of a linear map (or matrix)
   is the dimension of its image (column space)
   and is also given by the number of pivot columns, and
   the nullity is the dimension of its kernel.
@@ -173,7 +173,7 @@
 
 = Matrices
 
-#image("image-3.png")
+#image("image-3.png") <meme>
 
 == Linear Systems
 
@@ -265,6 +265,8 @@
 
 == Eigenvalues and Eigenvectors
 
+=== Matrices
+
 #definition(title: [Eigenstuff])[
   An eigenvalue $lambda$ with the eigenvector $ve(x) != ve(0)$
   of a matrix $A$ satisfies
@@ -277,7 +279,7 @@
   $ E_lambda = ker(A - lambda I), $
   which is a subspace of $RR^n$.
   
-  The number of occurances for a root to the characteristic equation
+  The number of occurrences for a root to the characteristic equation
   is that eigenvalue's algebraic multiplicity.
 ]
 
@@ -315,10 +317,16 @@ that gives a free
 #theorem(title: [Diagonalization])[
   For an $n times n$ matrix $A$ it is equivalent that
   + $A$ is diagonalizable.
-  + $A$ has $n$ linearly independent eigenvectors.
+  + $A$ has $n$ linearly independent eigenvectors. <temp>
   + There exists an invertible matrix $P$ and a diagonal matrix $D$ such that
     $A = P D P^(-1)$.
     In fact, $P$ is the eigenvectors and $D$ is the eigenvalues.
+] <thm:diagonalization>
+
+#corollary()[
+  An $n times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
+
+  #proof[The result follows immediately from @thm:diagonalization.]
 ]
 
 #tip-box()[
@@ -328,6 +336,23 @@ that gives a free
 ]
 
 #image("image-5.png")
+
+=== Transformations
+
+#definition()[
+  Let $V$ be a vector space.
+  An _eigenvector_ of a linear map $T : V -> V$ is a nonzero vector
+  $ve(x) in V : T(ve(x)) = lambda ve(x)$ for some scalar $lambda$.
+
+  A scalar $lambda$ is called an _eigenvalue_ of $T$ if
+  there is a nontrivial solution $ve(x)$ to $T(ve(x)) = lambda ve(x)$.
+
+  Such an $x$ is called an _eigenvector_ corresponding to $lambda$.
+]
+
+#image("image-6.png")
+
+#image("image-7.png")
 
 #image("image-2.png") <meme>
 
@@ -359,17 +384,26 @@ that gives a free
   n _automorphism_.
 ]
 
-#image("image-1.png", height: 10cm)
+#image("image-1.png", height: 10cm) <meme>
 
 #definition(title: [Affine])[
-  A transformation $f$ is affine if the function $g$ defined by
+  A map $f$ is affine if the function $g$ defined by
   $g(x) = f(x) - f(0)$ is linear.
+]
+
+#theorem()[
+  The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
+]
+
+#theorem(title:[Fundamental Theorem of Linear Maps])[
+  Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
+  Then $im T$ is finite-dimensional and $dim V = dim ker T + dim im T$.
 ]
 
 == Properties
 
 #theorem(title: [Left/Right Inverse])[
-  If a linear transformation has a right inverse then it is surjective,
+  If a linear map has a right inverse then it is surjective,
   if it has a left inverse then it is injective,
   and if it has both it is bijective.
 ]
