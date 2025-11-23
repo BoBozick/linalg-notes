@@ -15,7 +15,7 @@
   heading-break: false,
   contents: true,
 
-  memes: true,
+  memes: false,
 )
 
 #image("image-4.png") <meme>
@@ -157,6 +157,10 @@
 #definition(title: [Dimension])[
   The dimension of a vector space is the number of vectors in every basis.
   A vector space is either finite-dimensional och infinite-dimensional.
+]
+
+#theorem()[
+  With matrix addition and scalar multiplication, $dim F^(m times n) = m n$.
 ]
 
 #definition(title: [Rank and Nullity])[
@@ -364,7 +368,11 @@ that gives a free
   A function $T : V -> W$ is linear if
   $ T(a ve(u) + b ve(v)) = a T(ve(u)) + b T(ve(v)) $
   for all $ve(u), ve(v) in V$ and $a, b in RR$.
-  In other words, the function satisfies additivity and homogeneity.
+  In other words, the function satisfies additivity and homogenity.
+]
+
+#theorem()[
+  Any linear map $T$ has an associated matrix $cal(M)(T).$
 ]
 
 #theorem()[
@@ -376,7 +384,8 @@ that gives a free
 ]
 
 #definition(title: [Isomorphism])[
-  A linear map $T : V -> W$ is an _isomorphism_ if it is bijective.
+  A linear map $T : V -> W$ is an _isomorphism_ if it is bijective
+  or, equivalently, invertible.
 
   If such a map exists, the spaces _isomorphic_, written $V tilde.equiv W$.
 
@@ -384,12 +393,16 @@ that gives a free
   n _automorphism_.
 ]
 
-#image("image-1.png", height: 10cm) <meme>
-
-#definition(title: [Affine])[
-  A map $f$ is affine if the function $g$ defined by
-  $g(x) = f(x) - f(0)$ is linear.
+#theorem()[
+  Two finite dimensional vectors spaces over $F$ are isomorphic if and only if
+  they have the same dimension.
 ]
+
+#theorem()[
+  $dim cal(L)(V, W) = (dim V)(dim W)$
+]
+
+#image("image-1.png", height: 10cm) <meme>
 
 #theorem()[
   The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
@@ -397,7 +410,15 @@ that gives a free
 
 #theorem(title:[Fundamental Theorem of Linear Maps])[
   Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
-  Then $im T$ is finite-dimensional and $dim V = dim ker T + dim im T$.
+  Then, $im T$ is finite-dimensional and $dim V = dim ker T + dim im T$.
+]
+
+#definition(title: [Affine])[
+  A map $f$ is affine if it can be written as
+  $ f(x) = A x + b $
+  or, equivalently, if the map $g$ defined by
+  $ g(x) = f(x) - f(0) $
+  is linear.
 ]
 
 == Properties
