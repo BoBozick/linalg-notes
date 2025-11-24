@@ -34,10 +34,12 @@
 
   Additionally, a group is said to be _abelian_ if
   5. (Commutative) $a * b = b * a$
+
+  Note that the proof of (iii) and (iv) can be shortened if (v) is proven.
 ]
 
 #definition(title: [Field])[
-  A field is a set $F$ with two binary operations $+$ and $dot$ such that
+  A _field_ is a set $F$ with two binary operations $+$ and $dot$ such that
   + $(F, +)$ is an abelian group with identity $0$.
   + $(F\\{0}, dot)$ is an abelian group with identity $1$.
   + Multiplication distributes over addition:\
@@ -365,10 +367,12 @@ that gives a free
 == Definitions
 
 #definition(title: [Linear Map])[
-  A function $T : V -> W$ is linear if
+  A map $T : V -> W$ is _linear_ if
   $ T(a ve(u) + b ve(v)) = a T(ve(u)) + b T(ve(v)) $
   for all $ve(u), ve(v) in V$ and $a, b in RR$.
   In other words, the function satisfies additivity and homogenity.
+
+  If $V = W$, then $T$ is said to be an _operator_.
 ]
 
 #theorem()[
@@ -381,16 +385,20 @@ that gives a free
   + surjective ($im T = W$).
 
   This is equivalent to $T$ having a linear inverse $T^(-1) : W -> V$.
+
+  If $V$ is finite-dimensional, then $T$ being
+  injective, surjective, or invertible is equivalent.
 ]
 
 #definition(title: [Isomorphism])[
-  A linear map $T : V -> W$ is an _isomorphism_ if it is bijective
-  or, equivalently, invertible.
+  A map $T : V -> W$ is an _isomorphism_ if it is
+  + bijective and linear or, equivalently,
+  + invertible.
 
   If such a map exists, the spaces _isomorphic_, written $V tilde.equiv W$.
+  This means that the difference between them is the choice of basis.
 
-  If $V = W$, then $T$ is a
-  n _automorphism_.
+  If $V = W$, then $T$ is an _automorphism_.
 ]
 
 #theorem()[
