@@ -196,4 +196,6 @@
 #let rank = math.op("rank") // Rank
 #let nullity = math.op("nullity") // Nullity
 
+#let sgn = math.op("sgn") // Signum
+
 #let ort = math.tack.t // Orthogonal

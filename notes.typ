@@ -1,5 +1,5 @@
 #import "style.typ": *
-#import "@preview/physica:0.9.7": iprod
+#import "@preview/physica:0.9.7": iprod, derivative
 
 #show: styling.with(
   course-name: "Linear Algebra",
@@ -18,7 +18,58 @@
   memes: false,
 )
 
-#image("image-4.png") <meme>
+todo: finish ch 3 // TODO
+
+#image("assets/image-4.png") <meme>
+
+#definition()[
+  A permutation is a bijective map from a finite set to itself.
+
+  If $X = {1, ..., n}$ then its symmetric group is
+  $ S_n = {sigma : X -> X | sigma "is bijective"} $
+  and has $n!$ elements.
+
+  cyclic, e.g. (1 4 2) (3)
+
+  transposition is the permutation $(i space j)$
+]
+
+#lemma()[
+  Every permutation $sigma in S_n$ is a composition of transpositions.
+]
+
+#definition()[
+  Signum
+]
+
+#lemma()[
+  $ sgn((a_1 space a_2 space dots.h.c space a_n)) = (-1)^k $
+
+  #example[$ derivative(, x) abs(x) = sgn(x) $]
+]
+
+#definition()[
+  A _determinant_ is a scalar value associated with a square matrix $A$,
+  denoted $det A$ or $|A|$, defined recursively as follows:
+
+  - For a $1 times 1$ matrix $A = (a_(11))$ it holds that $det A = a_(11)$.
+  - For $n > 1$,
+    $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
+    where $M_(1j)$ is the $(n-1) times (n-1)$ submatrix obtained by deleting
+    row $1$ and column $j$ from $A$.
+
+  The determinant measures, e.g., whether a matrix is invertible,
+  the scaling factor of the linear transformation defined by $A$,
+  and how linearly independent the columns of $A$ are.
+]
+
+#theorem()[
+  $det A = det A^T$
+]
+
+#theorem()[
+  The determinant is multilinear in its rows.
+]
 
 = Vector Spaces
 
@@ -38,7 +89,7 @@
   Note that the proof of (iii) and (iv) can be shortened if (v) is proven.
 ]
 
-#definition(title: [Field])[
+#definition(title: [Field])[ // TODO UPDATE THIS
   A _field_ is a set $F$ with two binary operations $+$ and $dot$ such that
   + $(F, +)$ is an abelian group with identity $0$.
   + $(F\\{0}, dot)$ is an abelian group with identity $1$.
@@ -46,7 +97,7 @@
     for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
 
   That is, it holds that
-    + $0 + a = a + 0 = a$
+  + $0 + a = a + 0 = a$
   + $(a + b) + c = a + (b + c)$
   + $a + b = b + a$
   + there exists $(-a)$ with $a + (-a) = 0$
@@ -71,6 +122,8 @@
   + $ve(u) + ve(0) = ve(u)$
   + $ve(u) + (-ve(u)) = ve(0)$
 ]
+
+#image("assets/image.png")
 
 == Subspaces
 
@@ -179,7 +232,7 @@
 
 = Matrices
 
-#image("image-3.png") <meme>
+#image("assets/image-3.png") <meme>
 
 == Linear Systems
 
@@ -341,7 +394,7 @@ that gives a free
   (which you should verify).
 ]
 
-#image("image-5.png")
+#image("assets/image-5.png")
 
 === Transformations
 
@@ -356,11 +409,11 @@ that gives a free
   Such an $x$ is called an _eigenvector_ corresponding to $lambda$.
 ]
 
-#image("image-6.png")
+#image("assets/image-6.png")
 
-#image("image-7.png")
+#image("assets/image-7.png")
 
-#image("image-2.png") <meme>
+#image("assets/image-2.png") <meme>
 
 = Linear Maps
 
@@ -372,7 +425,8 @@ that gives a free
   for all $ve(u), ve(v) in V$ and $a, b in RR$.
   In other words, the function satisfies additivity and homogenity.
 
-  If $V = W$, then $T$ is said to be an _operator_.
+  If $W = V$, then $T$ is said to be an _operator_.
+  Else if $W = F$, then $T$ is said to be a _functional_.
 ]
 
 #theorem()[
@@ -410,7 +464,7 @@ that gives a free
   $dim cal(L)(V, W) = (dim V)(dim W)$
 ]
 
-#image("image-1.png", height: 10cm) <meme>
+#image("assets/image-1.png", height: 10cm) <meme>
 
 #theorem()[
   The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
@@ -443,18 +497,20 @@ that gives a free
 
 #definition(title: [Inner Product])[
   The inner product for a real vector space $V$ is function
-  $ iprod(x, y) : V times V -> RR $
+  $ iprod(ve(v), ve(u)) : V times V -> RR $
   that is
   + bilinear
   + symmetric
-  + positive definite
+  + positive definite:
+    $iprod(ve(v), ve(v)) = 0$ if $ve(v) = ve(0)$ else
+    $iprod(ve(v), ve(v)) > 0$
 ]
 
 #definition(title: [Inner Product Space])[
   An inner product space is a vector space and its inner product.
 
   #example(title: [Examples])[
-  + $V = RR^n$, $iprod(x, y) = x dot y$
+  + $V = RR^n$, $iprod(ve(x), ve(y)) = ve(x) dot ve(y)$
   + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = 3 x_1 y_1 + 5 x_2 y_2$
   + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = x_1 y_1 + x_2 y_2
     + (x_1 y_2 + x_2 y_1)/2$
@@ -470,6 +526,8 @@ that gives a free
 
 == Orthogonality
 
+=== Vectors
+
 #definition(title: [Orthogonality])[
   The vectors $ve(x)$ and $ve(y)$ in an inner product space are orthogonal,
   written $x ort y$, if and only if $iprod(x, y) = 0$.
@@ -478,6 +536,23 @@ that gives a free
 #note-box()[
   The zero-vector is orthogonal to all vectors.
 ]
+
+#image("assets/image-1.png")
+
+#image("assets/image-11.png")
+
+#image("assets/image-12.png")
+
+#image("assets/image-13.png")
+
+#image("assets/image-14.png")
+
+#tip-box()[
+  To find $R$ during QR-factorization, find $Q$ and set
+  $ R = Q^T A. $
+]
+
+=== Sets
 
 #definition(title: [Orthogonal Complement])[
   The orthogonal complement to a subset $S$ of a vector space $V$ is
@@ -497,11 +572,28 @@ that gives a free
   #proof // TODO
 ]
 
-#theorem()[
-  Let $B = (ve(b)_1, ..., ve(b)_n)$ be an ON-basis to an inner product space $V$
-  of which $ve(x) in V$. Then,
-  $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)) $
+=== Matrices
 
+#theorem()[
+  An $m times n$ matrix $U$ has orthonormal columns if and only if
+  $U^T U = I_n.$
+]
+
+#image("assets/image-10.png")
+
+#definition()[
+  An _orthogonal_ (also called _orthonormal_) matrix is
+  an invertible square matrix $Q$ with $Q^T = Q^(-1)$.
+
+  Such a matrix has orthonormal rows and columns.
+]
+
+#theorem()[
+  Let $B = (ve(b)_1, ..., ve(b)_n)$
+  be an ON-basis to an inner product space $V$
+  of which $ve(x) in V$. Then,
+  $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)). $
+  
   #proof // TODO
 ]
 
