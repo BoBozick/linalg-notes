@@ -186,7 +186,7 @@
 
 // Add notation
 #let ve(symbol) = math.upright(math.bold(symbol)) // Vector
-#let uve(symbol) = math.accent(vector(symbol), math.hat) // Unit vector
+#let uve(symbol) = math.accent(ve(symbol), math.hat) // Unit vector
 
 #let col = math.op("col") // Column space
 #let row = math.op("row") // Row space
@@ -195,6 +195,7 @@
 #let span = math.op("span") // Span
 #let rank = math.op("rank") // Rank
 #let nullity = math.op("nullity") // Nullity
+#let proj = math.op("proj") // Projection
 
 #let sgn = math.op("sgn") // Signum
 

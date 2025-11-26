@@ -18,8 +18,6 @@
   memes: false,
 )
 
-todo: finish ch 3 // TODO
-
 #image("assets/image-4.png") <meme>
 
 #definition()[
@@ -252,6 +250,7 @@ todo: finish ch 3 // TODO
 #definition(title: [Consistent])[
   A linear system $A ve(x) = ve(b)$ is consistent
   if it has at least one solution.
+  That is, $ve(b) in col A$.
 ]
 
 #theorem(title: [Echelon Test])[
@@ -320,6 +319,11 @@ todo: finish ch 3 // TODO
 
 #theorem(title: [Pivot Basis])[
   The pivot columns of a matrix form a basis for its column space.
+]
+
+#theorem(title: [Orthogonal Complements])[
+  For any matrix $A$,
+  $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
 
 == Eigenvalues and Eigenvectors
@@ -472,7 +476,8 @@ that gives a free
 
 #theorem(title:[Fundamental Theorem of Linear Maps])[
   Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
-  Then, $im T$ is finite-dimensional and $dim V = dim ker T + dim im T$.
+  Then, $im T$ is finite-dimensional and
+  $ dim ker T + dim im T = dim V. $
 ]
 
 #definition(title: [Affine])[
@@ -524,6 +529,20 @@ that gives a free
   $ norm(ve(x)) = sqrt(iprod(ve(x), ve(x))). $
 ]
 
+#definition(title: [Unit Vector])[
+  A unit vector is one whose norm is 1.
+]
+
+#theorem(title: [The Cauchy--Schwarz Inequality])[
+  For all $ve(u), ve(v) in V$,
+  $ |iprod(ve(u), ve(v))| <= norm(ve(u)) norm(ve(v)). $
+]
+
+#theorem(title: [The Triangle Inequality])[
+  For all $ve(u), ve(v) in V$,
+  $ norm(ve(u) + ve(v)) <= norm(ve(u)) + norm(ve(v)). $
+]
+
 == Orthogonality
 
 === Vectors
@@ -543,7 +562,23 @@ that gives a free
 
 #image("assets/image-12.png")
 
+#image("assets/image-17.png")
+
+#image("assets/image-18.png")
+
+#warning-box()[
+  The least-squares error is sometimes defined as the squared norm.
+]
+
+#theorem()[
+  If $ve(b) ort col A$ then $uve(b) := proj_(col A) ve(b) = ve(0).$
+]
+
 #image("assets/image-13.png")
+
+#image("assets/image-15.png")
+
+#image("assets/image-16.png")
 
 #image("assets/image-14.png")
 
