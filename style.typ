@@ -196,6 +196,7 @@
 #let rank = math.op("rank") // Rank
 #let nullity = math.op("nullity") // Nullity
 #let proj = math.op("proj") // Projection
+#let adj = math.op("adj") // Adjugate
 
 #let sgn = math.op("sgn") // Signum
 

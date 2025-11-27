@@ -11,7 +11,7 @@
   margin: 0.5cm,
   width: 15cm,
   height: auto,
-  end-space: 0em,
+  end-space: 40em,
   heading-break: false,
   contents: true,
 
@@ -23,7 +23,7 @@
 #definition()[
   A permutation is a bijective map from a finite set to itself.
 
-  If $X = {1, ..., n}$ then its symmetric group is
+  If $X = {1, dots, n}$ then its symmetric group is
   $ S_n = {sigma : X -> X | sigma "is bijective"} $
   and has $n!$ elements.
 
@@ -51,7 +51,7 @@
   denoted $det A$ or $|A|$, defined recursively as follows:
 
   - For a $1 times 1$ matrix $A = (a_(11))$ it holds that $det A = a_(11)$.
-  - For $n > 1$,
+  - (Cofactor expansion) For $n > 1$,
     $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
     where $M_(1j)$ is the $(n-1) times (n-1)$ submatrix obtained by deleting
     row $1$ and column $j$ from $A$.
@@ -67,6 +67,11 @@
 
 #theorem()[
   The determinant is multilinear in its rows.
+]
+
+#definition(title: [Adjugate])[
+  The adjugate $adj A$ of a square matrix $A$ is
+  the transpose of its cofactor matrix.
 ]
 
 = Vector Spaces
@@ -140,25 +145,25 @@
 ]
 
 #definition(title: [Span])[
-  The span of a set of vectors $S = {ve(v)_1, ..., ve(v)_k}$
+  The span of a set of vectors $S = {ve(v)_1, dots, ve(v)_k}$
   is the set of all linear combinations of the vectors in $S$.
   The span of a set of vectors is the smallest subspace that contains them.
 ]
 
 #theorem()[
-  If $ve(v)_1, ..., ve(v)_p in V$,
-  then $span{ve(v)_1, ..., ve(v)_p}$ is a subspace of $V$.
+  If $ve(v)_1, dots, ve(v)_p in V$,
+  then $span{ve(v)_1, dots, ve(v)_p}$ is a subspace of $V$.
 ]
 
 == Bases
 
 #definition(title: [Basis])[
-  A basis for a vector space $V$ is a set $B = {ve(b)_1, ..., ve(b)_n}$
+  A basis for a vector space $V$ is a set $B = {ve(b)_1, dots, ve(b)_n}$
   of linearly independent vectors that span $V$.
 
-  #example()[The set ${ve(e)_1, ..., ve(e)_n}$ is
+  #example()[The set ${ve(e)_1, dots, ve(e)_n}$ is
   the standard basis for $RR^n$,
-  and the set ${1, t, t^2, ..., t^n}$ is the standard basis for $P_n$.
+  and the set ${1, t, t^2, dots, t^n}$ is the standard basis for $P_n$.
   ]
 ]
 
@@ -170,14 +175,14 @@
 ]
 
 #definition(title: [Coordinates])[
-  Let $B = {ve(b)_1, ..., ve(b)_n}$ be a basis for $V$.
+  Let $B = {ve(b)_1, dots, ve(b)_n}$ be a basis for $V$.
   Each $ve(v) in V$ can be expressed as
   $ vec(ve(v))_B = vec(x_1, dots.v, x_n)_B, $
   the injective coordinate mapping $ve(v) -> vec(ve(v))_B$,
   $ P_B = mat(ve(b)_1, dots.h.c, ve(b)_n) $
   from $B$ to the standard basis in $V$, with
   $ ve(v) = P_B vec(ve(v))_B. $
-  Now let $C = {ve(c)_1, ..., ve(c)_n}$ be another basis for $V$.
+  Now let $C = {ve(c)_1, dots, ve(c)_n}$ be another basis for $V$.
   Then there is a unique $n times n$ matrix
   $ P_(C<-B) = mat(vec(ve(b)_1)_C, dots.h.c, vec(ve(b)_n)_C) $
   $ vec(ve(x))_C = P_(C<-B) vec(ve(x))_B $
@@ -313,8 +318,8 @@
 == Column and Row Spaces
 
 #definition(title: [Column Space])[
-  $ col(A) = span{ve(v)_1, ..., ve(v)_n} = im(f_A), $
-  where $ve(v)_1, ..., ve(v)_n$ are the columns of $A$.
+  $ col(A) = span{ve(v)_1, dots, ve(v)_n} = im(f_A), $
+  where $ve(v)_1, dots, ve(v)_n$ are the columns of $A$.
 ]
 
 #theorem(title: [Pivot Basis])[
@@ -361,8 +366,8 @@ Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
 that gives a free
 
 #theorem()[
-  If $ve(v)_1, ..., ve(v)_r$ eigenvectors corresponding to distinct
-  eigenvalues $lambda_1, ..., lambda_r$ of an $n times n$ matrix,
+  If $ve(v)_1, dots, ve(v)_r$ eigenvectors corresponding to distinct
+  eigenvalues $lambda_1, dots, lambda_r$ of an $n times n$ matrix,
   then they are linearly independent.
 ]
 
@@ -464,21 +469,7 @@ that gives a free
   they have the same dimension.
 ]
 
-#theorem()[
-  $dim cal(L)(V, W) = (dim V)(dim W)$
-]
-
 #image("assets/image-1.png", height: 10cm) <meme>
-
-#theorem()[
-  The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
-]
-
-#theorem(title:[Fundamental Theorem of Linear Maps])[
-  Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
-  Then, $im T$ is finite-dimensional and
-  $ dim ker T + dim im T = dim V. $
-]
 
 #definition(title: [Affine])[
   A map $f$ is affine if it can be written as
@@ -496,7 +487,23 @@ that gives a free
   and if it has both it is bijective.
 ]
 
-= Geometry
+== In Vector Spaces
+
+#theorem()[
+  $dim cal(L)(V, W) = (dim V)(dim W)$
+]
+
+#theorem()[
+  The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
+]
+
+#theorem(title:[Fundamental Theorem of Linear Maps])[
+  Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
+  Then, $im T$ is finite-dimensional and
+  $ dim ker T + dim im T = dim V. $
+]
+
+= Orthogonality
 
 == Inner Products
 
@@ -514,14 +521,17 @@ that gives a free
 #definition(title: [Inner Product Space])[
   An inner product space is a vector space and its inner product.
 
-  #example(title: [Examples])[
-  + $V = RR^n$, $iprod(ve(x), ve(y)) = ve(x) dot ve(y)$
-  + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = 3 x_1 y_1 + 5 x_2 y_2$
-  + $V = RR^2$, $iprod((x_1, x_2), (y_1, y_2)) = x_1 y_1 + x_2 y_2
-    + (x_1 y_2 + x_2 y_1)/2$
-  + $V = PP^n$ // TODO
-  + $V = C^0 ([-1, 1]), iprod(f, g) = integral_(-1)^1 f(t) d(t) dif t$ // TODO
-  ]
+  #example(title: [Examples])[$
+  V &= RR^n, quad iprod(ve(x), ve(y)) = ve(x) dot ve(y) \
+  V &= RR^2, quad iprod((x_1, x_2), (y_1, y_2)) = 3 x_1 y_1 + 5 x_2 y_2 \
+  V &= RR^2, quad iprod((x_1, x_2), (y_1, y_2)) =
+    x_1 y_1 + x_2 y_2 + (x_1 y_2 + x_2 y_1)/2 \
+  V &= PP^n,
+  quad iprod(ve(p), ve(q)) =
+  p(t_0) q(t_0) + dots.h.c +  p(t_n) q(t_n), quad t_0 != dots.h.c != t_n \
+  V &= C^0 ([-1, 1]),
+  quad iprod(f, g) = 1/(b-a) integral_(-1)^1 f(t) d(t) dif t
+  $]
 ]
 
 #definition(title: [Norm])[
@@ -543,9 +553,7 @@ that gives a free
   $ norm(ve(u) + ve(v)) <= norm(ve(u)) + norm(ve(v)). $
 ]
 
-== Orthogonality
-
-=== Vectors
+== Vectors
 
 #definition(title: [Orthogonality])[
   The vectors $ve(x)$ and $ve(y)$ in an inner product space are orthogonal,
@@ -556,6 +564,25 @@ that gives a free
   The zero-vector is orthogonal to all vectors.
 ]
 
+== Projection
+
+#tip-box(title: [Finding Intersections])[
+  - line--plane
+
+    Substitute the line's parametric form into the plane's general equation.
+
+  - line--line
+
+    Solve the system formed by the two parametric equations.
+
+  - plane--plane
+
+    Construct a vector between two arbitrary points (one on each plane)
+    given in parametric form.
+    Set its dot product with each plane's normal vector to zero.
+    Solve the resulting system of equations.
+]
+
 #image("assets/image-1.png")
 
 #image("assets/image-11.png")
@@ -564,11 +591,11 @@ that gives a free
 
 #image("assets/image-17.png")
 
-#image("assets/image-18.png")
-
 #warning-box()[
   The least-squares error is sometimes defined as the squared norm.
 ]
+
+#image("assets/image-18.png")
 
 #theorem()[
   If $ve(b) ort col A$ then $uve(b) := proj_(col A) ve(b) = ve(0).$
@@ -587,7 +614,7 @@ that gives a free
   $ R = Q^T A. $
 ]
 
-=== Sets
+== Sets
 
 #definition(title: [Orthogonal Complement])[
   The orthogonal complement to a subset $S$ of a vector space $V$ is
@@ -607,14 +634,7 @@ that gives a free
   #proof // TODO
 ]
 
-=== Matrices
-
-#theorem()[
-  An $m times n$ matrix $U$ has orthonormal columns if and only if
-  $U^T U = I_n.$
-]
-
-#image("assets/image-10.png")
+== Matrices
 
 #definition()[
   An _orthogonal_ (also called _orthonormal_) matrix is
@@ -624,7 +644,14 @@ that gives a free
 ]
 
 #theorem()[
-  Let $B = (ve(b)_1, ..., ve(b)_n)$
+  An $m times n$ matrix $U$ has orthonormal columns if and only if
+  $U^T U = I_n.$
+]
+
+#image("assets/image-10.png")
+
+#theorem()[
+  Let $B = (ve(b)_1, dots, ve(b)_n)$
   be an ON-basis to an inner product space $V$
   of which $ve(x) in V$. Then,
   $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)). $
@@ -632,35 +659,48 @@ that gives a free
   #proof // TODO
 ]
 
-== $RR^3$
+= Statistics
 
-#tip-box(title: [Finding Intersections])[
-  - line--plane
+== Markov Chains
 
-    Substitute the line's parametric form into the plane's general equation.
+#definition(title: [Markov Chain])[
+  A Markov chain is a sequence of random variables
+  $X_1, X_2, dots.$
+  The process is said to have the Markov property if
+  $ P(X_(n+1) = x | X_n = x_n, dots, X_1 = x_1) =
+  P(X_(n+1) = x | X_n = x_n) $
+  for all $n$ and all states $x_1, dots, x_n, x$.
 
-  - line--line
-
-    Solve the system formed by the two parametric equations.
-
-  - plane--plane
-
-    Construct a vector between two arbitrary points (one on each plane)
-    given in parametric form.
-    Set its dot product with each plane's normal vector to zero.
-    Solve the resulting system of equations.
+  A Markov chain is characterized by its transition matrix $P$, where
+  $ P_(i j) = P(X_(n+1) = j | X_n = i). $
 ]
 
-#theorem(title: [Rotation])[
-  Rotation about the $x$-, $y$- and $z$-axes by $theta$ (counterclockwise):
-  $
-  mat(1, 0, 0; 0, cos theta, -sin theta; 0, sin theta, cos theta),
-  mat(cos theta, 0, sin theta; 0, 1, 0; -sin theta, 0, cos theta),
-  mat(cos theta, -sin theta, 0; sin theta, cos theta, 0; 0, 0, 1).
-  $
+#theorem()[
+  Let $ve(pi) = (pi_1, pi_2, dots, pi_n)$ be a probability vector.
+  Then, $ve(pi)$ is a stationary distribution of the Markov chain with
+  transition matrix $P$ if and only if
+  $ ve(pi)^T P = ve(pi)^T. $
 ]
 
-#warning-box()[
-  Pay special attention to the placement of the minus sign for
-  the $y$-axis rotation.
-]
+== Linear Regression
+
+$X ve(beta) = ve(y)$,
+where $X$ is the design matrix,
+$ve(beta)$ is the parameter vector of regression coefficients,
+and $ve(y)$ is the observation vector.
+
+The simplest relation between two variables is the linear equation
+$y = beta_0 + beta_1 x.$
+The difference between predicted and observed $y$-value is called a residual.
+
+If written on mean-deviation form $$
+
+A linear model is on the form
+$ ve(y) = X ve(beta) + ve(epsilon) $
+where $X$ is the design matrix,
+$ve(beta)$ is the parameter vector of regression coefficients,
+and $ve(y)$ is the observation vector.
+Its solution solution $uve(beta)$ satisfies
+$ X^T X ve(beta) = X^T ve(y). $
+
+#image("assets/image-19.png")
