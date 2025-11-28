@@ -596,7 +596,7 @@ that gives a free
 #image("assets/image-18.png")
 
 #theorem()[
-  If $ve(b) ort col A$ then $uve(b) := proj_(col A) ve(b) = ve(0).$
+  If $ve(b) ort col A$ then $hve(b) := proj_(col A) ve(b) = ve(0).$
 ]
 
 #image("assets/image-13.png")
@@ -699,7 +699,7 @@ $ ve(y) = X ve(beta) + ve(epsilon) $
 where $X$ is the design matrix,
 $ve(beta)$ is the parameter vector of regression coefficients,
 and $ve(y)$ is the observation vector.
-Its solution solution $uve(beta)$ satisfies
+Its solution solution $hve(beta)$ satisfies
 $ X^T X ve(beta) = X^T ve(y). $
 
 #image("assets/image-19.png")
