@@ -1,6 +1,4 @@
 #import "style.typ": *
-#import "@preview/physica:0.9.7": iprod, derivative
-
 #show: styling.with(
   course-name: "Linear Algebra",
   course-code: "SF1672",

@@ -1,7 +1,6 @@
 #import "@preview/theorion:0.4.1": *
 #import cosmos.rainbow: *
 
-#import "@preview/physica:0.9.7": super-T-as-transpose
 #import "notation.typ": *
 
 

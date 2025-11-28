@@ -1,3 +1,5 @@
+#import "@preview/physica:0.9.7": super-T-as-transpose, iprod, derivative
+
 // LINEAR ALGEBRA
 
 #let ort = math.tack.t // Orthogonal
