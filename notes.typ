@@ -21,7 +21,7 @@
 #definition()[
   A permutation is a bijective map from a finite set to itself.
 
-  If $X = {1, dots, n}$ then its symmetric group is
+  If $X = {1, ..., n}$ then its symmetric group is
   $ S_n = {sigma : X -> X | sigma "is bijective"} $
   and has $n!$ elements.
 
@@ -67,10 +67,54 @@
   The determinant is multilinear in its rows.
 ]
 
+#image("assets/image-20.png", width: 11cm)
+
+#definition()[
+  For any $n times n$ matrix $A$ and $ve(b)$ with $n$ elements we define
+  $ A_i (ve(b)) = mat(ve(a)_1, dots.h.c, ve(b), dots.h.c, ve(a)_n). $
+]
+
+#lemma(title: [Cramer's Rule])[
+  Let $A$ be an invertible $n times n$ matrix.
+  For every $ve(b) in RR^n$ the unique solution has entries satisfying
+  $ x_i = (det A_i (ve(b))) / (det A). $
+
+  #image("assets/image-21.png")
+]
+
 #definition(title: [Adjugate])[
-  The adjugate $adj A$ of a square matrix $A$ is
+  The _adjugate_ (or _classical adjoint_) $adj A$ of a square matrix $A$ is
   the transpose of its cofactor matrix.
 ]
+
+#theorem()[
+  Let $A$ be an invertible $n times n$ matrix. Then
+  $ A^(-1) = 1/(det A) adj A. $
+]
+
+#corollary()[
+  $ A adj A = I det A $
+]
+
+#theorem()[
+  If $A$ is $2 times 2$ then the area of
+  the parallelogram determined by its columns is $abs(det A).$
+
+  If $A$ is $3 times 3$ then the volume of
+  the parallelepiped determined by its columns is $abs(det A).$ 
+]
+
+#corollary()[
+  The area between $ve(a)_1$ and $ve(a)_2$ is the same as
+  $ve(a)_1$ and $ve(a)_2 + lambda ve(a)_1.$
+]
+
+#image("assets/image-22.png")
+
+The theorem above holds for any region with
+finite area in $RR^2$ or finite volume in $RR^3$.
+
+#image("assets/image-23.png")
 
 = Vector Spaces
 
@@ -143,25 +187,25 @@
 ]
 
 #definition(title: [Span])[
-  The span of a set of vectors $S = {ve(v)_1, dots, ve(v)_k}$
+  The span of a set of vectors $S = {ve(v)_1, ..., ve(v)_k}$
   is the set of all linear combinations of the vectors in $S$.
   The span of a set of vectors is the smallest subspace that contains them.
 ]
 
 #theorem()[
-  If $ve(v)_1, dots, ve(v)_p in V$,
-  then $span{ve(v)_1, dots, ve(v)_p}$ is a subspace of $V$.
+  If $ve(v)_1, ..., ve(v)_p in V$,
+  then $span{ve(v)_1, ..., ve(v)_p}$ is a subspace of $V$.
 ]
 
 == Bases
 
 #definition(title: [Basis])[
-  A basis for a vector space $V$ is a set $B = {ve(b)_1, dots, ve(b)_n}$
+  A basis for a vector space $V$ is a set $B = {ve(b)_1, ..., ve(b)_n}$
   of linearly independent vectors that span $V$.
 
-  #example()[The set ${ve(e)_1, dots, ve(e)_n}$ is
+  #example()[The set ${ve(e)_1, ..., ve(e)_n}$ is
   the standard basis for $RR^n$,
-  and the set ${1, t, t^2, dots, t^n}$ is the standard basis for $P_n$.
+  and the set ${1, t, t^2, ..., t^n}$ is the standard basis for $P_n$.
   ]
 ]
 
@@ -173,14 +217,14 @@
 ]
 
 #definition(title: [Coordinates])[
-  Let $B = {ve(b)_1, dots, ve(b)_n}$ be a basis for $V$.
+  Let $B = {ve(b)_1, ..., ve(b)_n}$ be a basis for $V$.
   Each $ve(v) in V$ can be expressed as
   $ vec(ve(v))_B = vec(x_1, dots.v, x_n)_B, $
   the injective coordinate mapping $ve(v) -> vec(ve(v))_B$,
   $ P_B = mat(ve(b)_1, dots.h.c, ve(b)_n) $
   from $B$ to the standard basis in $V$, with
   $ ve(v) = P_B vec(ve(v))_B. $
-  Now let $C = {ve(c)_1, dots, ve(c)_n}$ be another basis for $V$.
+  Now let $C = {ve(c)_1, ..., ve(c)_n}$ be another basis for $V$.
   Then there is a unique $n times n$ matrix
   $ P_(C<-B) = mat(vec(ve(b)_1)_C, dots.h.c, vec(ve(b)_n)_C) $
   $ vec(ve(x))_C = P_(C<-B) vec(ve(x))_B $
@@ -316,8 +360,8 @@
 == Column and Row Spaces
 
 #definition(title: [Column Space])[
-  $ col(A) = span{ve(v)_1, dots, ve(v)_n} = im(f_A), $
-  where $ve(v)_1, dots, ve(v)_n$ are the columns of $A$.
+  $ col(A) = span{ve(v)_1, ..., ve(v)_n} = im(f_A), $
+  where $ve(v)_1, ..., ve(v)_n$ are the columns of $A$.
 ]
 
 #theorem(title: [Pivot Basis])[
@@ -364,8 +408,8 @@ Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
 that gives a free
 
 #theorem()[
-  If $ve(v)_1, dots, ve(v)_r$ eigenvectors corresponding to distinct
-  eigenvalues $lambda_1, dots, lambda_r$ of an $n times n$ matrix,
+  If $ve(v)_1, ..., ve(v)_r$ eigenvectors corresponding to distinct
+  eigenvalues $lambda_1, ..., lambda_r$ of an $n times n$ matrix,
   then they are linearly independent.
 ]
 
@@ -507,13 +551,18 @@ that gives a free
 
 #definition(title: [Inner Product])[
   The inner product for a real vector space $V$ is function
-  $ iprod(ve(v), ve(u)) : V times V -> RR $
-  that is
-  + bilinear
-  + symmetric
-  + positive definite:
+  $ iprod(ve(u), ve(v)) : V times V -> RR $
+  with
+  + bilinearity
+  + symmetry
+  + positive-definiteness:
     $iprod(ve(v), ve(v)) = 0$ if $ve(v) = ve(0)$ else
     $iprod(ve(v), ve(v)) > 0$
+
+  More generally for any vector space, the function must have
+  + linearity in the first argument
+  + conjugate symmetry: $iprod(ve(u), ve(v)) = dash(iprod(ve(v), ve(u)))$
+  + positive-definiteness
 ]
 
 #definition(title: [Inner Product Space])[
@@ -539,6 +588,19 @@ that gives a free
 
 #definition(title: [Unit Vector])[
   A unit vector is one whose norm is 1.
+]
+
+Let $V$ be a an inner product space over $RR$ or $CC$.
+
+#lemma()[
+  Given a $ve(v)$ in an product product space $V$
+  and given a finite-dimensional subspace $W$,
+  the Pythagorean Theorem in conjunction with
+  the orthogonal decomposition of $ve(v)$ with respect to $W$ yields
+  $ norm(ve(v))^2 = norm(proj_W ve(v))^2 + norm(ve(v) - proj_W ve(v))^2. $
+
+  In particular, note that
+  $ norm(ve(v)) >= norm(proj_W ve(v)). $
 ]
 
 #theorem(title: [The Cauchy--Schwarz Inequality])[
@@ -649,7 +711,7 @@ that gives a free
 #image("assets/image-10.png")
 
 #theorem()[
-  Let $B = (ve(b)_1, dots, ve(b)_n)$
+  Let $B = (ve(b)_1, ..., ve(b)_n)$
   be an ON-basis to an inner product space $V$
   of which $ve(x) in V$. Then,
   $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)). $
@@ -665,16 +727,16 @@ that gives a free
   A Markov chain is a sequence of random variables
   $X_1, X_2, dots.$
   The process is said to have the Markov property if
-  $ P(X_(n+1) = x | X_n = x_n, dots, X_1 = x_1) =
+  $ P(X_(n+1) = x | X_n = x_n, ..., X_1 = x_1) =
   P(X_(n+1) = x | X_n = x_n) $
-  for all $n$ and all states $x_1, dots, x_n, x$.
+  for all $n$ and all states $x_1, ..., x_n, x$.
 
   A Markov chain is characterized by its transition matrix $P$, where
   $ P_(i j) = P(X_(n+1) = j | X_n = i). $
 ]
 
 #theorem()[
-  Let $ve(pi) = (pi_1, pi_2, dots, pi_n)$ be a probability vector.
+  Let $ve(pi) = (pi_1, pi_2, ..., pi_n)$ be a probability vector.
   Then, $ve(pi)$ is a stationary distribution of the Markov chain with
   transition matrix $P$ if and only if
   $ ve(pi)^T P = ve(pi)^T. $
