@@ -2,6 +2,7 @@
 #import cosmos.rainbow: *
 
 #import "@preview/physica:0.9.7": super-T-as-transpose
+#import "notation.typ": *
 
 
 #let styling(
@@ -12,8 +13,8 @@
   title-space: 0em,
 
   size: 12pt,
-  margin: 0.5cm, // 0.5 for computer, 0.1 for phone (cm)
-  width: 11cm,   // 16 for computer, 8 for phone (cm)
+  margin: 0.5cm, // 0.5cm for computer, 0.1cm for phone
+  width: 14cm,   // 14-16cm for computer, 8cm for phone
   height: auto,
   end-space: 0em,
   heading-break: false,
@@ -162,7 +163,7 @@
 #let (definition-counter, definition-box, definition, show-definition) = make-frame(
   "definition",
   theorion-i18n-map.at("definition"),
-  inherited-levels: 2, // Create new counter.
+  inherited-levels: 2, // Create new counter with 2 inherited levels.
   render: render-fn.with(fill: orange),
 )
 
@@ -182,22 +183,3 @@
       ]
   )
 }
-
-
-// Add notation
-#let ve(symbol) = math.upright(math.bold(symbol)) // Vector
-#let uve(symbol) = math.accent(ve(symbol), math.hat) // Unit vector
-
-#let col = math.op("col") // Column space
-#let row = math.op("row") // Row space
-#let im = math.op("im") // Image
-#let coker = math.op("coker") // Cokernel
-#let span = math.op("span") // Span
-#let rank = math.op("rank") // Rank
-#let nullity = math.op("nullity") // Nullity
-#let proj = math.op("proj") // Projection
-#let adj = math.op("adj") // Adjugate
-
-#let sgn = math.op("sgn") // Signum
-
-#let ort = math.tack.t // Orthogonal

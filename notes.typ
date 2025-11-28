@@ -693,7 +693,8 @@ The simplest relation between two variables is the linear equation
 $y = beta_0 + beta_1 x.$
 The difference between predicted and observed $y$-value is called a residual.
 
-If written on mean-deviation form $$
+If written on mean-deviation form $x^* = x - dash(x)$
+then the two columns of the design matrix will be orthogonal.
 
 A linear model is on the form
 $ ve(y) = X ve(beta) + ve(epsilon) $
