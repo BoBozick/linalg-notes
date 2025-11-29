@@ -18,104 +18,6 @@
 
 #image("assets/image-4.png") <meme>
 
-#definition()[
-  A permutation is a bijective map from a finite set to itself.
-
-  If $X = {1, ..., n}$ then its symmetric group is
-  $ S_n = {sigma : X -> X | sigma "is bijective"} $
-  and has $n!$ elements.
-
-  cyclic, e.g. (1 4 2) (3)
-
-  transposition is the permutation $(i space j)$
-]
-
-#lemma()[
-  Every permutation $sigma in S_n$ is a composition of transpositions.
-]
-
-#definition()[
-  Signum
-]
-
-#lemma()[
-  $ sgn((a_1 space a_2 space dots.h.c space a_n)) = (-1)^k $
-
-  #example[$ derivative(, x) abs(x) = sgn(x) $]
-]
-
-#definition()[
-  A _determinant_ is a scalar value associated with a square matrix $A$,
-  denoted $det A$ or $|A|$, defined recursively as follows:
-
-  - For a $1 times 1$ matrix $A = (a_(11))$ it holds that $det A = a_(11)$.
-  - (Cofactor expansion) For $n > 1$,
-    $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
-    where $M_(1j)$ is the $(n-1) times (n-1)$ submatrix obtained by deleting
-    row $1$ and column $j$ from $A$.
-
-  The determinant measures, e.g., whether a matrix is invertible,
-  the scaling factor of the linear transformation defined by $A$,
-  and how linearly independent the columns of $A$ are.
-]
-
-#theorem()[
-  $det A = det A^T$
-]
-
-#theorem()[
-  The determinant is multilinear in its rows.
-]
-
-#image("assets/image-20.png", width: 11cm)
-
-#definition()[
-  For any $n times n$ matrix $A$ and $ve(b)$ with $n$ elements we define
-  $ A_i (ve(b)) = mat(ve(a)_1, dots.h.c, ve(b), dots.h.c, ve(a)_n). $
-]
-
-#lemma(title: [Cramer's Rule])[
-  Let $A$ be an invertible $n times n$ matrix.
-  For every $ve(b) in RR^n$ the unique solution has entries satisfying
-  $ x_i = (det A_i (ve(b))) / (det A). $
-
-  #image("assets/image-21.png")
-]
-
-#definition(title: [Adjugate])[
-  The _adjugate_ (or _classical adjoint_) $adj A$ of a square matrix $A$ is
-  the transpose of its cofactor matrix.
-]
-
-#theorem()[
-  Let $A$ be an invertible $n times n$ matrix. Then
-  $ A^(-1) = 1/(det A) adj A. $
-]
-
-#corollary()[
-  $ A adj A = I det A $
-]
-
-#theorem()[
-  If $A$ is $2 times 2$ then the area of
-  the parallelogram determined by its columns is $abs(det A).$
-
-  If $A$ is $3 times 3$ then the volume of
-  the parallelepiped determined by its columns is $abs(det A).$ 
-]
-
-#corollary()[
-  The area between $ve(a)_1$ and $ve(a)_2$ is the same as
-  $ve(a)_1$ and $ve(a)_2 + lambda ve(a)_1.$
-]
-
-#image("assets/image-22.png")
-
-The theorem above holds for any region with
-finite area in $RR^2$ or finite volume in $RR^3$.
-
-#image("assets/image-23.png")
-
 = Vector Spaces
 
 == Definitions
@@ -279,32 +181,9 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 
 #image("assets/image-3.png") <meme>
 
-== Linear Systems
+== Inverse
 
-#definition(title: [Echelon Form])[
-  - Row Echelon Form (REF): \
-    Pivots move to the right as you go down, with zeros below each pivot.
-
-  - Reduced Row Echelon Form (RREF): \
-    REF plus each pivot is 1 and is the only nonzero entry in its column.
-    Canonical, i.e., unique.
-]
-
-#warning-box()[
-  Some authors also require pivots to start with 1 for REF.
-]
-
-#definition(title: [Consistent])[
-  A linear system $A ve(x) = ve(b)$ is consistent
-  if it has at least one solution.
-  That is, $ve(b) in col A$.
-]
-
-#theorem(title: [Echelon Test])[
-  After reducing $mat(A, |, ve(b))$ to REF or RREF, a system is inconsistent
-  if and only if you obtain a row of the form
-  $ mat(0, 0, dots.h.c, 0, |, c), quad c != 0. $
-]
+=== Existence
 
 #definition(title: [Singular])[
   A matrix is singular if it is square and non-invertible.
@@ -315,13 +194,6 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   one elementary row operation to the identity matrix $I_n$.
   
   All elementary matrices are invertible.
-]
-
-#theorem(title: [Determinant Properties])[
-  Let $A$ and $B$ be $n times n$ matrices.
-  + $det A B = (det A)(det B$)
-  + $det A^T = det A$
-  + $det A = a_11 a_22 dots.h.c a_(n n)$ if $A$ is triangular
 ]
 
 #theorem(title: [Invertible])[
@@ -357,6 +229,33 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   + $det A != 0$
 ]
 
+=== Row Reduction
+
+#definition(title: [Echelon Form])[
+  - Row Echelon Form (REF): \
+    Pivots move to the right as you go down, with zeros below each pivot.
+
+  - Reduced Row Echelon Form (RREF): \
+    REF plus each pivot is 1 and is the only nonzero entry in its column.
+    Canonical, i.e., unique.
+]
+
+#warning-box()[
+  Some authors also require pivots to start with 1 for REF.
+]
+
+#definition(title: [Consistent])[
+  A linear system $A ve(x) = ve(b)$ is consistent
+  if it has at least one solution.
+  That is, $ve(b) in col A$.
+]
+
+#theorem(title: [Echelon Test])[
+  After reducing $mat(A, |, ve(b))$ to REF or RREF, a system is inconsistent
+  if and only if you obtain a row of the form
+  $ mat(0, 0, dots.h.c, 0, |, c), quad c != 0. $
+]
+
 == Column and Row Spaces
 
 #definition(title: [Column Space])[
@@ -372,6 +271,119 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   For any matrix $A$,
   $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
+
+== Permutations
+
+#definition()[
+  A permutation is a bijective map from a finite set to itself.
+
+  If $X = {1, ..., n}$ then its symmetric group is
+  $ S_n = {sigma : X -> X | sigma "is bijective"} $
+  and has $n!$ elements.
+
+  cyclic, e.g. (1 4 2) (3)
+
+  transposition is the permutation $(i space j)$
+]
+
+#lemma()[
+  Every permutation $sigma in S_n$ is a composition of transpositions.
+]
+
+#definition()[
+  Signum
+]
+
+#lemma()[
+  $ sgn((a_1 space a_2 space dots.h.c space a_n)) = (-1)^k $
+
+  #example[$ derivative(, x) abs(x) = sgn(x) $]
+]
+
+== Determinants
+
+=== Computation
+
+#definition()[
+  A _determinant_ is a scalar value associated with a square matrix $A$,
+  denoted $det A$ or $|A|$, defined recursively as follows:
+
+  - For a $1 times 1$ matrix $A = (a_(11))$ it holds that $det A = a_(11)$.
+  - (Cofactor expansion) For $n > 1$,
+    $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
+    where $M_(1j)$ is the $(n-1) times (n-1)$ submatrix obtained by deleting
+    row $1$ and column $j$ from $A$.
+
+  The determinant measures, e.g., whether a matrix is invertible,
+  the scaling factor of the linear transformation defined by $A$,
+  and how linearly independent the columns of $A$ are.
+]
+
+#theorem(title: [Properties])[
+  Let $A$ and $B$ be $n times n$ matrices. Then
+  + $det A B = (det A)(det B$)
+  + $det A^T = det A$
+  + $det A = a_11 a_22 dots.h.c a_(n n)$ if $A$ is triangular
+]
+
+#theorem()[
+  The determinant is multilinear in its rows.
+]
+
+=== Linear Systems
+
+#image("assets/image-20.png", width: 11cm)
+
+#definition()[
+  For any $n times n$ matrix $A$ and $ve(b)$ with $n$ elements we define
+  $ A_i (ve(b)) = mat(ve(a)_1, dots.h.c, ve(b), dots.h.c, ve(a)_n). $
+]
+
+#lemma(title: [Cramer's Rule])[
+  Let $A$ be an invertible $n times n$ matrix.
+  For every $ve(b) in RR^n$ the unique solution has entries satisfying
+  $ x_i = (det A_i (ve(b))) / (det A). $
+
+  #image("assets/image-21.png")
+]
+
+=== Adjugates
+
+#definition(title: [Adjugate])[
+  The _adjugate_ (or _classical adjoint_) $adj A$ of a square matrix $A$ is
+  the transpose of its cofactor matrix.
+]
+
+#theorem()[
+  Let $A$ be an invertible $n times n$ matrix. Then
+  $ A^(-1) = 1/(det A) adj A. $
+]
+
+#corollary()[
+  $ A adj A = I det A $
+]
+
+=== Area and Volume
+
+#theorem()[
+  If $A$ is $2 times 2$ then the area of
+  the parallelogram determined by its columns is $abs(det A).$
+
+  If $A$ is $3 times 3$ then the volume of
+  the parallelepiped determined by its columns is $abs(det A).$ 
+]
+
+#corollary()[
+  The area between $ve(a)_1$ and $ve(a)_2$ is the same as
+  $ve(a)_1$ and $ve(a)_2 + lambda ve(a)_1.$
+]
+
+#image("assets/image-22.png")
+
+The theorem above holds for any region with
+finite area in $RR^2$ or finite volume in $RR^3$.
+
+#image("assets/image-23.png")
 
 == Eigenvalues and Eigenvectors
 
@@ -413,6 +425,8 @@ that gives a free
   then they are linearly independent.
 ]
 
+=== Diagonalization
+
 #definition(title: [Similarity])[
   If $A$ and $B$ are $n times n$ matrices such that there exists $P$ with
   $ P^(-1) A P = B "or, equivalently," A = P B P^(-1). $
@@ -447,7 +461,7 @@ that gives a free
 
 #image("assets/image-5.png")
 
-=== Transformations
+=== Maps
 
 #definition()[
   Let $V$ be a vector space.
