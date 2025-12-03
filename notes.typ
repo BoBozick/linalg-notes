@@ -18,6 +18,12 @@
 
 #image("assets/image-4.png") <meme>
 
+TODO:
+- do i need to know the really formal (using sgn) def of determinant?
+- recursive sequences
+- LU factorization
+- komplementanteckningarna
+
 = Vector Spaces
 
 == Definitions
@@ -36,22 +42,12 @@
   Note that the proof of (iii) and (iv) can be shortened if (v) is proven.
 ]
 
-#definition(title: [Field])[ // TODO UPDATE THIS
+#definition(title: [Field])[
   A _field_ is a set $F$ with two binary operations $+$ and $dot$ such that
   + $(F, +)$ is an abelian group with identity $0$.
   + $(F\\{0}, dot)$ is an abelian group with identity $1$.
   + Multiplication distributes over addition:\
     for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
-
-  That is, it holds that
-  + $0 + a = a + 0 = a$
-  + $(a + b) + c = a + (b + c)$
-  + $a + b = b + a$
-  + there exists $(-a)$ with $a + (-a) = 0$
-  + $1 dot a = a dot 1$
-  + $(a dot b) dot c = a dot (b dot c)$
-  + $a dot b = b dot a$
-  + for all $a != 0$ there exists $a^(-1)$ with $a dot a^(-1) = 1$
 ]
 
 #definition(title: [Vector Space])[
@@ -60,14 +56,20 @@
   - Scalar multiplication $dot : F times V -> V$
 
   These must satisfy
-  + $ve(u) + ve(v) in V$
-  + $ve(u) + ve(v) = ve(v) + ve(u)$
-  + $ve(u) + (ve(v) + ve(w)) = (ve(u) + ve(v)) + ve(w)$
-  + $a (b ve(u)) = (a b) ve(u)$
-  + $a (ve(u) + ve(v)) = a ve(u) + a ve(v)$
-  + $1 ve(u) = ve(u)$
-  + $ve(u) + ve(0) = ve(u)$
-  + $ve(u) + (-ve(u)) = ve(0)$
+  + (Closure under addition) $ve(u) + ve(v) in V$
+  + (Distributivity over vectors) $a (ve(u) + ve(v)) = a ve(u) + a ve(v)$
+  + (Associativity) $ve(u) + (ve(v) + ve(w)) = (ve(u) + ve(v)) + ve(w)$
+  + (Identity) $ve(u) + ve(0) = ve(u)$
+    \ \
+  + (Inverse) $ve(u) + (-ve(u)) = ve(0)$
+  + (Commutativity) $ve(u) + ve(v) = ve(v) + ve(u)$
+    \ \
+  + (Closure under scalar multiplication) $a ve(u) in V$
+  + (Distributivity over scalars) $(a + b) ve(u) = a ve(u) + b ve(u)$
+  + (Associativity) $a (b ve(u)) = (a b) ve(u)$
+  + (Identity) $1 ve(u) = ve(u)$
+
+  Note that requiring closure is often omitted.
 ]
 
 #image("assets/image.png")
@@ -390,24 +392,26 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 === Matrices
 
 #definition(title: [Eigenstuff])[
-  An eigenvalue $lambda$ with the eigenvector $ve(x) != ve(0)$
-  of a matrix $A$ satisfies
-  $ A ve(x) = lambda ve(x) "or, equivalently," (A - lambda I) ve(x) = ve(0). $
+  An eigenvalue $lambda$ of matrix $A in CC^(n times n)$ satisfies
+  $ A ve(x) = lambda ve(x) "or, equivalently," (A - lambda I) ve(x) = ve(0) $
+  for some eigenvector $ve(x) != ve(0)$.
   The eigenvalues are found from the characteristic equation
   $ det(A - lambda I) = 0, $
   which for each eigenvalue gives the eigenvectors as the solutions to
   $ (A - lambda I) ve(x) = ve(0) $
   and the eigenspace as
   $ E_lambda = ker(A - lambda I), $
-  which is a subspace of $RR^n$.
-  
-  The number of occurrences for a root to the characteristic equation
-  is that eigenvalue's algebraic multiplicity.
+  which is a subspace of $CC^n$.
+
+  The multiplicity of a solution to the characteristic equation
+  is the _algebraic multiplicity_ of that eigenvalue.
 ]
 
 #note-box()[
   Although the eigenvector must be nonzero, the eigenvalue may be zero,
   which it is if and only if the matrix is not invertible.
+
+  #proof[Since 0 is an eigenvalue, $0 = det(A - 0 I)$, but $A - 0 I = A$.]
 ]
 
 #theorem()[
@@ -449,14 +453,12 @@ that gives a free
 
 #corollary()[
   An $n times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
-
-  #proof[The result follows immediately from @thm:diagonalization.]
 ]
 
 #tip-box()[
   To avoid computing $P^(-1)$, simply verify that $A P = P D.$
-  This is equivalent to $A = P D P^(1)$ when $P$ is invertible
-  (which you should verify).
+  This is equivalent to $A = P D P^(-1)$ if $P$ is invertible
+  (which should be verified).
 ]
 
 #image("assets/image-5.png")
@@ -479,6 +481,44 @@ that gives a free
 #image("assets/image-7.png")
 
 #image("assets/image-2.png") <meme>
+
+=== Complex
+
+#definition(title: [Complex Vector])[
+  $ ve(x) = real ve(x) + i imaginary ve(x) $
+  $ dash(ve(x)) = real ve(x) - i imaginary ve(x) $
+]
+
+#image("assets/image-27.png")
+
+#image("assets/image-24.png")
+
+#image("assets/image-26.png")
+
+#definition(title: [Conjugate Transpose])[
+  The conjugate transpose $A^dagger$ of a matrix $A$ is obtained by
+  transposing it and replacing all entries with their complex conjugate.
+]
+
+#definition(title: [Unitary Matrix])[
+  An invertible complex square matrix $U$ is unitary if
+  its matrix inverse $U^(-1)$ is its conjugate transpose $U^dagger$.
+]
+
+#theorem()[
+  The columns of a unitary matrix in a vector space $V^n$
+  form an orthonormal basis for $V^n$.
+]
+
+#definition(title: [Orthogonal Matrix])[
+  A matrix $Q$ is orthogonal if it is real and unitary.
+]
+
+// TODO: continue?
+
+== Symmetric
+
+#image("assets/image-25.png")
 
 = Linear Maps
 
@@ -579,6 +619,10 @@ that gives a free
   + positive-definiteness
 ]
 
+#warning-box[
+  The _dot product_ refers to the typical definition of the inner product.
+]
+
 #definition(title: [Inner Product Space])[
   An inner product space is a vector space and its inner product.
 
@@ -640,6 +684,8 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 
 == Projection
 
+=== Intersections
+
 #tip-box(title: [Finding Intersections])[
   - line--plane
 
@@ -657,9 +703,30 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
     Solve the resulting system of equations.
 ]
 
+=== Orthogonal Basis
+#definition(title: [Orthogonal Projection])[
+  The projection of $ve(y)$ onto $W$ is the $hve(y)$ in $W$ such that
+  $ ve(y) - hve(y) ort W. $
+]
+
 #image("assets/image-1.png")
 
+#image("assets/image-13.png")
+
+#image("assets/image-15.png")
+
 #image("assets/image-11.png")
+
+#image("assets/image-16.png")
+
+#image("assets/image-14.png")
+
+#tip-box()[
+  To find $R$ during QR-factorization, find $Q$ and set
+  $ R = Q^T A. $
+]
+
+=== Approximation
 
 #image("assets/image-12.png")
 
@@ -673,19 +740,6 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 
 #theorem()[
   If $ve(b) ort col A$ then $hve(b) := proj_(col A) ve(b) = ve(0).$
-]
-
-#image("assets/image-13.png")
-
-#image("assets/image-15.png")
-
-#image("assets/image-16.png")
-
-#image("assets/image-14.png")
-
-#tip-box()[
-  To find $R$ during QR-factorization, find $Q$ and set
-  $ R = Q^T A. $
 ]
 
 == Sets

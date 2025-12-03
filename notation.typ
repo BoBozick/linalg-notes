@@ -1,6 +1,6 @@
 #import "@preview/physica:0.9.7": super-T-as-transpose, iprod, derivative
 
-// LINEAR ALGEBRA
+// ALGEBRA
 
 #let ort = math.tack.t // Orthogonal
 
@@ -14,6 +14,8 @@
 #let proj = math.op("proj") // Projection
 #let adj = math.op("adj") // Adjugate
 #let sgn = math.op("sgn") // Signum
+#let real = math.op("Re")
+#let imaginary = math.op("Im")
 
 // Vectors
 #let ve(symbol) = math.upright(math.bold(symbol)) // Vector
