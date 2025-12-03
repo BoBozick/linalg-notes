@@ -387,139 +387,6 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 
 #image("assets/image-23.png")
 
-== Eigenvalues and Eigenvectors
-
-=== Matrices
-
-#definition(title: [Eigenstuff])[
-  An eigenvalue $lambda$ of matrix $A in CC^(n times n)$ satisfies
-  $ A ve(x) = lambda ve(x) "or, equivalently," (A - lambda I) ve(x) = ve(0) $
-  for some eigenvector $ve(x) != ve(0)$.
-  The eigenvalues are found from the characteristic equation
-  $ det(A - lambda I) = 0, $
-  which for each eigenvalue gives the eigenvectors as the solutions to
-  $ (A - lambda I) ve(x) = ve(0) $
-  and the eigenspace as
-  $ E_lambda = ker(A - lambda I), $
-  which is a subspace of $CC^n$.
-
-  The multiplicity of a solution to the characteristic equation
-  is the _algebraic multiplicity_ of that eigenvalue.
-]
-
-#note-box()[
-  Although the eigenvector must be nonzero, the eigenvalue may be zero,
-  which it is if and only if the matrix is not invertible.
-
-  #proof[Since 0 is an eigenvalue, $0 = det(A - 0 I)$, but $A - 0 I = A$.]
-]
-
-#theorem()[
-  The eigenvalues of a triangular matrix are the entries on its diagonal.
-]
-
-// TODO fix this:
-Let $lambda$ be an eigenvalue of a triangular matrix $A$.
-Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
-that gives a free
-
-#theorem()[
-  If $ve(v)_1, ..., ve(v)_r$ eigenvectors corresponding to distinct
-  eigenvalues $lambda_1, ..., lambda_r$ of an $n times n$ matrix,
-  then they are linearly independent.
-]
-
-=== Diagonalization
-
-#definition(title: [Similarity])[
-  If $A$ and $B$ are $n times n$ matrices such that there exists $P$ with
-  $ P^(-1) A P = B "or, equivalently," A = P B P^(-1). $
-]
-
-#theorem()[
-  If two matrices are similar, then they share eigenvalues.
-
-  However, the reverse is not implied.
-]
-
-#theorem(title: [Diagonalization])[
-  For an $n times n$ matrix $A$ it is equivalent that
-  + $A$ is diagonalizable.
-  + $A$ has $n$ linearly independent eigenvectors. <temp>
-  + There exists an invertible matrix $P$ and a diagonal matrix $D$ such that
-    $A = P D P^(-1)$.
-    In fact, $P$ is the eigenvectors and $D$ is the eigenvalues.
-] <thm:diagonalization>
-
-#corollary()[
-  An $n times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
-]
-
-#tip-box()[
-  To avoid computing $P^(-1)$, simply verify that $A P = P D.$
-  This is equivalent to $A = P D P^(-1)$ if $P$ is invertible
-  (which should be verified).
-]
-
-#image("assets/image-5.png")
-
-=== Maps
-
-#definition()[
-  Let $V$ be a vector space.
-  An _eigenvector_ of a linear map $T : V -> V$ is a nonzero vector
-  $ve(x) in V : T(ve(x)) = lambda ve(x)$ for some scalar $lambda$.
-
-  A scalar $lambda$ is called an _eigenvalue_ of $T$ if
-  there is a nontrivial solution $ve(x)$ to $T(ve(x)) = lambda ve(x)$.
-
-  Such an $x$ is called an _eigenvector_ corresponding to $lambda$.
-]
-
-#image("assets/image-6.png")
-
-#image("assets/image-7.png")
-
-#image("assets/image-2.png") <meme>
-
-=== Complex
-
-#definition(title: [Complex Vector])[
-  $ ve(x) = real ve(x) + i imaginary ve(x) $
-  $ dash(ve(x)) = real ve(x) - i imaginary ve(x) $
-]
-
-#image("assets/image-27.png")
-
-#image("assets/image-24.png")
-
-#image("assets/image-26.png")
-
-#definition(title: [Conjugate Transpose])[
-  The conjugate transpose $A^dagger$ of a matrix $A$ is obtained by
-  transposing it and replacing all entries with their complex conjugate.
-]
-
-#definition(title: [Unitary Matrix])[
-  An invertible complex square matrix $U$ is unitary if
-  its matrix inverse $U^(-1)$ is its conjugate transpose $U^dagger$.
-]
-
-#theorem()[
-  The columns of a unitary matrix in a vector space $V^n$
-  form an orthonormal basis for $V^n$.
-]
-
-#definition(title: [Orthogonal Matrix])[
-  A matrix $Q$ is orthogonal if it is real and unitary.
-]
-
-// TODO: continue?
-
-== Symmetric
-
-#image("assets/image-25.png")
-
 = Linear Maps
 
 == Definitions
@@ -787,7 +654,171 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
   #proof // TODO
 ]
 
-= Statistics
+= Eigenvalues and Eigenvectors
+
+== Of Matrices
+
+#definition(title: [Eigenstuff])[
+  An eigenvalue $lambda$ of matrix $A in CC^(n times n)$ satisfies
+  $ A ve(x) = lambda ve(x) "or, equivalently," (A - lambda I) ve(x) = ve(0) $
+  for some eigenvector $ve(x) != ve(0)$.
+  The eigenvalues are found from the characteristic equation
+  $ det(A - lambda I) = 0, $
+  which for each eigenvalue gives the eigenvectors as the solutions to
+  $ (A - lambda I) ve(x) = ve(0) $
+  and the eigenspace as
+  $ E_lambda = ker(A - lambda I), $
+  which is a subspace of $CC^n$.
+
+  The multiplicity of a solution to the characteristic equation
+  is the _algebraic multiplicity_ of that eigenvalue.
+]
+
+#note-box()[
+  Although the eigenvector must be nonzero, the eigenvalue may be zero,
+  which it is if and only if the matrix is not invertible.
+
+  #proof[Since 0 is an eigenvalue, $0 = det(A - 0 I)$, but $A - 0 I = A$.]
+]
+
+#theorem()[
+  The eigenvalues of a triangular matrix are the entries on its diagonal.
+]
+
+// TODO fix this:
+Let $lambda$ be an eigenvalue of a triangular matrix $A$.
+Then, if and only if $a_(i i) = lambda$ for some diagonal element $a_(i i)$,
+that gives a free
+
+#theorem()[
+  If $ve(v)_1, ..., ve(v)_r$ eigenvectors corresponding to distinct
+  eigenvalues $lambda_1, ..., lambda_r$ of an $n times n$ matrix,
+  then they are linearly independent.
+]
+
+== Diagonalization
+
+#definition(title: [Similarity])[
+  If $A$ and $B$ are $n times n$ matrices such that there exists $P$ with
+  $ P^(-1) A P = B "or, equivalently," A = P B P^(-1). $
+]
+
+#theorem()[
+  If two matrices are similar, then they share eigenvalues.
+
+  However, the reverse is not implied.
+]
+
+#theorem(title: [Diagonalization])[
+  For an $n times n$ matrix $A$ it is equivalent that
+  + $A$ is diagonalizable.
+  + $A$ has $n$ linearly independent eigenvectors. <temp>
+  + There exists an invertible matrix $P$ and a diagonal matrix $D$ such that
+    $A = P D P^(-1)$.
+    In fact, $P$ is the eigenvectors and $D$ is the eigenvalues.
+] <thm:diagonalization>
+
+#corollary()[
+  An $n times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
+]
+
+#tip-box()[
+  To avoid computing $P^(-1)$, simply verify that $A P = P D.$
+  This is equivalent to $A = P D P^(-1)$ if $P$ is invertible
+  (which should be verified).
+]
+
+#image("assets/image-5.png")
+
+== Of Maps
+
+#definition()[
+  Let $V$ be a vector space.
+  An _eigenvector_ of a linear map $T : V -> V$ is a nonzero vector
+  $ve(x) in V : T(ve(x)) = lambda ve(x)$ for some scalar $lambda$.
+
+  A scalar $lambda$ is called an _eigenvalue_ of $T$ if
+  there is a nontrivial solution $ve(x)$ to $T(ve(x)) = lambda ve(x)$.
+
+  Such an $x$ is called an _eigenvector_ corresponding to $lambda$.
+]
+
+#image("assets/image-6.png")
+
+#image("assets/image-7.png")
+
+#image("assets/image-2.png") <meme>
+
+== Complex
+
+=== Calculations
+
+#definition(title: [Complex Vector])[
+  $ ve(x) = real ve(x) + i imaginary ve(x) $
+  $ dash(ve(x)) = real ve(x) - i imaginary ve(x) $
+]
+
+#image("assets/image-27.png")
+
+#image("assets/image-24.png")
+
+#image("assets/image-26.png")
+
+=== Transposes
+
+#definition(title: [Conjugate Transpose])[
+  The conjugate transpose $A^dagger$ of a matrix $A$ is obtained by
+  transposing it and replacing all entries with their complex conjugate.
+]
+
+#definition(title: [Unitary Matrix])[
+  An invertible complex square matrix $U$ is unitary if
+  its matrix inverse $U^(-1)$ is its conjugate transpose $U^dagger$.
+]
+
+#theorem()[
+  The columns of a unitary matrix in a vector space $V^n$
+  form an orthonormal basis for $V^n$.
+]
+
+#definition(title: [Orthogonal Matrix])[
+  A matrix $Q$ is orthogonal if it is real and unitary.
+]
+
+// TODO: continue?
+
+== Symmetric
+
+=== Spectrum
+
+#image("assets/image-25.png")
+
+#image("assets/image-28.png")
+
+#image("assets/image-29.png")
+
+=== Quadratic Forms
+
+==== Definition
+
+#image("assets/image-30.png")
+
+#image("assets/image-31.png")
+
+==== Principal Axes
+
+#image("assets/image-32.png")
+
+#image("assets/image-33.png")
+
+==== Definiteness
+
+#image("assets/image-34.png")
+
+#image("assets/image-35.png")
+
+#image("assets/image-36.png")
+
 
 == Markov Chains
 
@@ -833,3 +864,46 @@ Its solution solution $hve(beta)$ satisfies
 $ X^T X ve(beta) = X^T ve(y). $
 
 #image("assets/image-19.png")
+
+= Statistics
+
+== Markov Chains
+
+#definition(title: [State Space and Transition Matrix])[ 
+  A _Markov chain_ is a stochastic process $X_0, X_1, X_2, dots.$ taking values
+  in a finite set of states $S = {1, dots.h.c, n}$ such that
+  $ P(X_(k+1) = j | X_k = i, X_(k-1), dots.h.c, X_0)
+              = P(X_(k+1) = j | X_k = i) $
+  for all states $i, j$ and all times $k$.
+
+  The transition probabilities are collected in the _transition matrix_
+  $ P = (p_(i j))_, i, j = 1^n, $ where
+  $ p_(i j) = P(X_(k+1) = j | X_k = i) $ and each row of $P$ sums to $1$.
+]
+
+#definition(title: [Distributions])[ 
+  A _probability vector_ (or _distribution_) on $S$ is a row vector
+  $ ve(pi) = (pi_1, dots.h.c, pi_n) $ with $pi_i >= 0$ and
+  $ pi_1 + dots.h.c + pi_n = 1$.
+
+  If $ve(pi)^(0)$ is the initial distribution of $X_0$, then the
+  distribution after $k$ steps is
+  $ ve(pi)^(k) = ve(pi)^(0) P^k. $
+]
+
+#definition(title: [Stationary Distribution])[ 
+  A distribution $ve(pi)$ is _stationary_ (or _equilibrium_) for $P$ if
+  $ ve(pi) P = ve(pi). $
+  In this case, if $X_0$ is distributed according to $ve(pi)$,
+  then so is $X_k$ for every $k$.
+]
+
+#theorem(title: [Long-Term Behaviour (Idea)])[
+  For many irreducible and aperiodic finite Markov chains, the distributions
+  $ve(pi)^(k)$ converge to a unique stationary distribution $ve(pi)$ as
+  $k -> infinity$, independently of the initial distribution $ve(pi)^(0)$.
+
+  Thus, $ve(pi)$ describes the long-run proportion of time the chain spends
+  in each state.
+]
+
