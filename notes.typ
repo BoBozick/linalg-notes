@@ -278,18 +278,32 @@ TODO:
 
 #definition()[
   A permutation is a bijective map from a finite set to itself.
+]
 
-  If $X = {1, ..., n}$ then its symmetric group is
+#note-box()[
+  Permutations are commonly represented as value tables or graphs.
+]
+
+#definition()[
+  A fixed point is invariant under a transformation such as a permutation.
+]
+
+#definition()[
+  The symmetric group of $X = {1, ..., n}$ is
   $ S_n = {sigma : X -> X | sigma "is bijective"} $
   and has $n!$ elements.
+]
 
-  cyclic, e.g. (1 4 2) (3)
+cyclic, e.g. (1 4 2) (3) // TODO
 
-  transposition is the permutation $(i space j)$
+#definition()[
+  A transposition of the elements $i, j in {1, ..., n}$
+  is the permutation $tau_(i j)$ with the cyclic notation $(i j)$.
 ]
 
 #lemma()[
-  Every permutation $sigma in S_n$ is a composition of transpositions.
+  A permutation $sigma in S_n$ can be written as
+  a composition of transpositions.
 ]
 
 #definition()[
@@ -819,27 +833,7 @@ that gives a free
 
 #image("assets/image-36.png")
 
-
-== Markov Chains
-
-#definition(title: [Markov Chain])[
-  A Markov chain is a sequence of random variables
-  $X_1, X_2, dots.$
-  The process is said to have the Markov property if
-  $ P(X_(n+1) = x | X_n = x_n, ..., X_1 = x_1) =
-  P(X_(n+1) = x | X_n = x_n) $
-  for all $n$ and all states $x_1, ..., x_n, x$.
-
-  A Markov chain is characterized by its transition matrix $P$, where
-  $ P_(i j) = P(X_(n+1) = j | X_n = i). $
-]
-
-#theorem()[
-  Let $ve(pi) = (pi_1, pi_2, ..., pi_n)$ be a probability vector.
-  Then, $ve(pi)$ is a stationary distribution of the Markov chain with
-  transition matrix $P$ if and only if
-  $ ve(pi)^T P = ve(pi)^T. $
-]
+= Statistics
 
 == Linear Regression
 
@@ -865,20 +859,25 @@ $ X^T X ve(beta) = X^T ve(y). $
 
 #image("assets/image-19.png")
 
-= Statistics
-
 == Markov Chains
 
-#definition(title: [State Space and Transition Matrix])[ 
-  A _Markov chain_ is a stochastic process $X_0, X_1, X_2, dots.$ taking values
-  in a finite set of states $S = {1, dots.h.c, n}$ such that
-  $ P(X_(k+1) = j | X_k = i, X_(k-1), dots.h.c, X_0)
-              = P(X_(k+1) = j | X_k = i) $
-  for all states $i, j$ and all times $k$.
+#definition(title: [Markov Chain])[
+  A Markov chain is a sequence of random variables
+  $X_1, X_2, dots.$
+  The process is said to have the Markov property if
+  $ P(X_(n+1) = x | X_n = x_n, ..., X_1 = x_1) =
+  P(X_(n+1) = x | X_n = x_n) $
+  for all $n$ and all states $x_1, ..., x_n, x$.
 
-  The transition probabilities are collected in the _transition matrix_
-  $ P = (p_(i j))_, i, j = 1^n, $ where
-  $ p_(i j) = P(X_(k+1) = j | X_k = i) $ and each row of $P$ sums to $1$.
+  A Markov chain is characterized by its transition matrix $P$, where
+  $ P_(i j) = P(X_(n+1) = j | X_n = i). $
+]
+
+#theorem()[
+  Let $ve(pi) = (pi_1, pi_2, ..., pi_n)$ be a probability vector.
+  Then, $ve(pi)$ is a stationary distribution of the Markov chain with
+  transition matrix $P$ if and only if
+  $ ve(pi)^T P = ve(pi)^T. $
 ]
 
 #definition(title: [Distributions])[ 
@@ -890,20 +889,3 @@ $ X^T X ve(beta) = X^T ve(y). $
   distribution after $k$ steps is
   $ ve(pi)^(k) = ve(pi)^(0) P^k. $
 ]
-
-#definition(title: [Stationary Distribution])[ 
-  A distribution $ve(pi)$ is _stationary_ (or _equilibrium_) for $P$ if
-  $ ve(pi) P = ve(pi). $
-  In this case, if $X_0$ is distributed according to $ve(pi)$,
-  then so is $X_k$ for every $k$.
-]
-
-#theorem(title: [Long-Term Behaviour (Idea)])[
-  For many irreducible and aperiodic finite Markov chains, the distributions
-  $ve(pi)^(k)$ converge to a unique stationary distribution $ve(pi)$ as
-  $k -> infinity$, independently of the initial distribution $ve(pi)^(0)$.
-
-  Thus, $ve(pi)$ describes the long-run proportion of time the chain spends
-  in each state.
-]
-
