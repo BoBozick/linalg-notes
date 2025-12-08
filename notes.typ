@@ -120,7 +120,8 @@ TODO:
 
 #definition(title: [Coordinates])[
   Let $B = {ve(b)_1, ..., ve(b)_n}$ be a basis for $V$.
-  Each $ve(v) in V$ can be expressed as
+  Each geometric vector $ve(v) in V$
+  can be expressed as a coordinate vector
   $ vec(ve(v))_B = vec(x_1, dots.v, x_n)_B, $
   the injective coordinate mapping $ve(v) -> vec(ve(v))_B$,
   $ P_B = mat(ve(b)_1, dots.h.c, ve(b)_n) $
@@ -364,7 +365,7 @@ cyclic, e.g. (1 4 2) (3) // TODO
 
 #image("assets/image-20.png", width: 11cm)
 
-#definition()[
+#definition(title: [Cofactor Matrix Variant])[
   For any $n times n$ matrix $A$ and $ve(b)$ with $n$ elements we define
   $ A_i (ve(b)) = mat(ve(a)_1, dots.h.c, ve(b), dots.h.c, ve(a)_n). $
 ]
@@ -659,7 +660,7 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 
 == Matrices
 
-#definition()[
+#definition(title: [Orthogonal Matrix])[
   An _orthogonal_ (also called _orthonormal_) matrix is
   an invertible square matrix $Q$ with $Q^T = Q^(-1)$.
 
@@ -762,7 +763,7 @@ that gives a free
 
 === Maps
 
-#definition()[
+#definition(title: [Eigenvalues and Eigenvectors of a Map])[
   Let $V$ be a vector space.
   An _eigenvector_ of a linear map $T : V -> V$ is a nonzero vector
   $ve(x) in V : T(ve(x)) = lambda ve(x)$ for some scalar $lambda$.
@@ -826,9 +827,10 @@ that gives a free
 
 === Hermitian Spaces
 
-#definition()[
-  An Hermitian bilinear form $iprod(-, -) : V times V -> CC$ has the properties:
-  + $RR$-bilinear, i.e.,
+#definition(title: [Hermitian Form])[
+  A Hermitian form $iprod(-, -) : V times V -> CC$ is
+  a bilinear form on a complex vector space with the following properties:
+  + $RR$ bilinearity, i.e.,
     - $iprod(a ve(u) + b ve(v), ve(w)) =
       a iprod(ve(u), ve(w)) + b iprod(ve(v), ve(w))$
     - $iprod(ve(u), a ve(v) + b ve(w)) = 
@@ -846,9 +848,8 @@ that gives a free
   ]
 ]
 
-#definition()[
-  A $CC$ vector space with an Hermitian bilinear form
-  is called an Hermitian space.
+#definition(title: [Hermitian Space])[
+  A Hermitian space is a $CC$ vector space with a Hermitian form.
 ]
 
 #note-box()[
@@ -878,8 +879,8 @@ that gives a free
   for some symmetric $A$.
 ]
 
-#definition()[
-  Let $(V, iprod(-, -))$ be an Hermitian space.
+#definition(title: [Hermitian Map])[
+  Let $(V, iprod(-, -))$ be a Hermitian space.
   A $CC$-linear map $f : V -> V$ is Hermitian if
   $ iprod(f(ve(v)), ve(w)) = iprod(ve(v), f(ve(v))). $
   
@@ -888,13 +889,13 @@ that gives a free
 ]
 
 #theorem()[
-  Let $cal(B)$ be a unitary basis to an Hermitian room $V$.
+  Let $cal(B)$ be a unitary basis to a Hermitian room $V$.
   Then $f$ is Hermitian if and only if $A = [f]_cal(B)$ is Hermitian.
 ]
 
 === Unitary Bases
 
-#definition()[
+#definition(title: [Kronecker Delta])[
   The Kronecker delta is
   $ delta_(i j) = cases(
     1 quad &"if" i = j\,,
@@ -903,13 +904,13 @@ that gives a free
   and is used to express orthonormality and identity matrices.
 ]
 
-#definition()[
-  A unitary basis to an Hermitian space is
+#definition(title: [Unitary Basis])[
+  A unitary basis to a Hermitian space is
   a basis $ve(v)_1, ..., ve(v)_n$ such that
   $ iprod(ve(v)_i, ve(v)_j) = delta_(i j). $
 ]
 
-#definition()[
+#definition(title: [Unitary Matrix])[
   A matrix $U in CC^(n times n)$ is unitary if its columns form
   a unitary basis to $CC^n$ or, equivalently,
   if $U U^* = I$ or $U^(-1) = U^*$.
@@ -925,7 +926,7 @@ that gives a free
 
 === The Complex Spectral Theorem
 
-#definition()[
+#definition(title: [Unitary Diagonalization])[
   A matrix $A in CC^(n times n)$ is unitary diagonalizable if there exists
   a _real_ diagonal matrix $D$ and a unitary matrix $U$ such that
   $ A = U D U^(-1) = U D U^*. $
@@ -935,13 +936,18 @@ that gives a free
   $[f]_cal(B)$ is a real diagonal matrix.
 ]
 
-#theorem()[
-  An Hermitian map of a finite-dimensional $CC$ vector space
+#lemma()[
+  All eigenvalues to Hermitian maps of finite-dimensional Hermitian spaces
+  are real.
+]
+
+#theorem(title: [The Complex Spectral Theorem])[
+  A Hermitian map of a finite-dimensional $CC$ vector space
   is unitary diagonalizable.
 ]
 
 #corollary()[
-  An Hermitian matrix $A in CC^(n times n)$ is unitary diagonalizable.
+  A Hermitian matrix $A in CC^(n times n)$ is unitary diagonalizable.
   That is,
   $ A = A^* <==> A = U D U^*. $
 ]
