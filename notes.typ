@@ -19,10 +19,8 @@
 #image("assets/image-4.png") <meme>
 
 TODO:
-- do i need to know the really formal (using sgn) def of determinant?
 - recursive sequences
 - LU factorization
-- komplementanteckningarna
 
 = Vector Spaces
 
@@ -274,9 +272,11 @@ TODO:
   $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
 
-== Permutations
+== Determinants
 
-#definition()[
+=== Permutations
+
+#definition(title: [Permutation])[
   A permutation is a bijective map from a finite set to itself.
 ]
 
@@ -284,11 +284,11 @@ TODO:
   Permutations are commonly represented as value tables or graphs.
 ]
 
-#definition()[
+#definition(title: [Fixed Point])[
   A fixed point is invariant under a transformation such as a permutation.
 ]
 
-#definition()[
+#definition(title: [Symmetric Group])[
   The symmetric group of $X = {1, ..., n}$ is
   $ S_n = {sigma : X -> X | sigma "is bijective"} $
   and has $n!$ elements.
@@ -296,43 +296,57 @@ TODO:
 
 cyclic, e.g. (1 4 2) (3) // TODO
 
-#definition()[
+#definition(title: [Transposition])[
   A transposition of the elements $i, j in {1, ..., n}$
   is the permutation $tau_(i j)$ with the cyclic notation $(i j)$.
 ]
 
-#lemma()[
+#theorem()[
   A permutation $sigma in S_n$ can be written as
   a composition of transpositions.
 ]
 
-#definition()[
-  Signum
-]
-
-#lemma()[
-  $ sgn((a_1 space a_2 space dots.h.c space a_n)) = (-1)^k $
+#definition(title: [Sign Function])[
+  The sign (or _signum_) of a number $x in RR$ is
+  $ sgn x = cases(
+    -1 quad &"if" x < 0\,,
+    0 quad &"if" x = 0\,,
+    +1 quad &"if" x > 0\,,
+  ) $
+  while the sign of a permutation $sigma in S_n$ is
+  $ sgn sigma = cases(
+    -1 quad &"if" sigma "is odd"\,,
+    +1 quad &"if" sigma "is even"\,
+  ) $
+  or equivalently
+  $ sgn sigma = (-1)^k, $
+  where $k$ is the number of inversion or equivalently transpositions.
 
   #example[$ derivative(, x) abs(x) = sgn(x) $]
 ]
 
-== Determinants
-
 === Computation
 
-#definition()[
-  A _determinant_ is a scalar value associated with a square matrix $A$,
-  denoted $det A$ or $|A|$, defined recursively as follows:
+#definition(title: [Determinant])[
+  The determinant of an $n times n$ matrix $A$ is the scalar
+  $ det A = sum_(sigma in S_n) sgn(sigma) product_(i=1)^n a_(i, sigma(i)). $
 
-  - For a $1 times 1$ matrix $A = (a_(11))$ it holds that $det A = a_(11)$.
-  - (Cofactor expansion) For $n > 1$,
-    $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
-    where $M_(1j)$ is the $(n-1) times (n-1)$ submatrix obtained by deleting
-    row $1$ and column $j$ from $A$.
+  Observe that elements from each row and column occur exactly once
+  in every product.
+]
 
-  The determinant measures, e.g., whether a matrix is invertible,
-  the scaling factor of the linear transformation defined by $A$,
-  and how linearly independent the columns of $A$ are.
+#note-box()[
+  The determinant measures, e.g.,
+  + whether a matrix is invertible,
+  + the scaling factor of the linear transformation defined by $A$, and
+  + how linearly independent the columns of $A$ are.
+]
+
+#theorem(title: [Cofactor Expansion])[
+  For $n > 1$,
+  $ det A = sum_(j=1)^n (-1)^(1+j) a_(1j) det(M_(1j)), $
+  where $M_(1j)$ is the $(n-1) times (n-1)$ minor obtained by deleting
+  row $1$ and column $j$ from $A$.
 ]
 
 #theorem(title: [Properties])[
@@ -710,10 +724,12 @@ that gives a free
   then they are linearly independent.
 ]
 
-== Diagonalization
+== Real
+
+=== Diagonalization
 
 #definition(title: [Similarity])[
-  If $A$ and $B$ are $n times n$ matrices such that there exists $P$ with
+  If $A$ and $B$ are $n times n$ matrices such t hat there exists $P$ with
   $ P^(-1) A P = B "or, equivalently," A = P B P^(-1). $
 ]
 
@@ -744,7 +760,7 @@ that gives a free
 
 #image("assets/image-5.png")
 
-== Of Maps
+=== Maps
 
 #definition()[
   Let $V$ be a vector space.
@@ -763,9 +779,39 @@ that gives a free
 
 #image("assets/image-2.png") <meme>
 
+=== The Real Spectral Thoerem
+
+#image("assets/image-25.png")
+
+#image("assets/image-28.png")
+
+#image("assets/image-29.png")
+
+== Quadratic Forms
+
+=== Definition
+
+#image("assets/image-30.png")
+
+#image("assets/image-31.png")
+
+=== Principal Axes
+
+#image("assets/image-32.png")
+
+#image("assets/image-33.png")
+
+=== Definiteness
+
+#image("assets/image-34.png")
+
+#image("assets/image-35.png")
+
+#image("assets/image-36.png")
+
 == Complex
 
-=== Calculations
+=== Complex Calculations
 
 #definition(title: [Complex Vector])[
   $ ve(x) = real ve(x) + i imaginary ve(x) $
@@ -778,60 +824,127 @@ that gives a free
 
 #image("assets/image-26.png")
 
-=== Transposes
+=== Hermitian Spaces
 
-#definition(title: [Conjugate Transpose])[
-  The conjugate transpose $A^dagger$ of a matrix $A$ is obtained by
-  transposing it and replacing all entries with their complex conjugate.
+#definition()[
+  An Hermitian bilinear form $iprod(-, -) : V times V -> CC$ has the properties:
+  + $RR$-bilinear, i.e.,
+    - $iprod(a ve(u) + b ve(v), ve(w)) =
+      a iprod(ve(u), ve(w)) + b iprod(ve(v), ve(w))$
+    - $iprod(ve(u), a ve(v) + b ve(w)) = 
+      dash(a) iprod(ve(u), ve(v)) + dash(b) iprod(ve(u), ve(w))$
+  + conjugate symmetry:
+    $iprod(ve(u), ve(v)) = dash(iprod(ve(v), ve(u)))$
+  + positive-definiteness:
+    $iprod(ve(v), ve(v)) = 0$ if $ ve(v) = ve(0)$
+    else $iprod(ve(v), ve(v)) > 0$
+  + $iprod(i ve(v), ve(w)) = i iprod(ve(v), ve(w)) = -iprod(ve(v), i ve(w))$
+
+  #example[The Hermitian standard form on $CC^n$ is
+  $ iprod(ve(x), ve(y)) = ve(x) dot dash(ve(y)) =
+  x_1 dash(y)_1 + dots.h.c + x_n dash(y)_n. $
+  ]
 ]
 
-#definition(title: [Unitary Matrix])[
-  An invertible complex square matrix $U$ is unitary if
-  its matrix inverse $U^(-1)$ is its conjugate transpose $U^dagger$.
+#definition()[
+  A $CC$ vector space with an Hermitian bilinear form
+  is called an Hermitian space.
+]
+
+#note-box()[
+  The complex transpose (also called Hermitian transpose) is notated
+  $A^*, A^"H", A' "or" A^dagger$.
 ]
 
 #theorem()[
-  The columns of a unitary matrix in a vector space $V^n$
-  form an orthonormal basis for $V^n$.
+  For the Hermitian standard form on $CC^n$ and $A in CC^(n times n)$
+  it holds that
+  $ iprod(A ve(x), ve(y)) = iprod(ve(x), A^* ve(y)). $
 ]
 
-#definition(title: [Orthogonal Matrix])[
-  A matrix $Q$ is orthogonal if it is real and unitary.
+#definition()[
+  A matrix $A$ is Hermitian if $A = A^*$.
 ]
 
-// TODO: continue?
+#theorem()[
+  All Hermitian bilinear forms can be written
+  $ iprod(ve(x), ve(y)) = ve(x)^* A ve(y) $
+  for some Hermitian $A$.
+]
 
-== Symmetric
+#corollary()[
+  All inner products can be written
+  $ iprod(ve(x), ve(y)) = ve(x)^T A ve(y) $
+  for some symmetric $A$.
+]
 
-=== Spectrum
+#definition()[
+  Let $(V, iprod(-, -))$ be an Hermitian space.
+  A $CC$-linear map $f : V -> V$ is Hermitian if
+  $ iprod(f(ve(v)), ve(w)) = iprod(ve(v), f(ve(v))). $
+  
+  This is similar to
+  an $RR$-linear map $f$ in an inner product space being symmetric.
+]
 
-#image("assets/image-25.png")
+#theorem()[
+  Let $cal(B)$ be a unitary basis to an Hermitian room $V$.
+  Then $f$ is Hermitian if and only if $A = [f]_cal(B)$ is Hermitian.
+]
 
-#image("assets/image-28.png")
+=== Unitary Bases
 
-#image("assets/image-29.png")
+#definition()[
+  The Kronecker delta is
+  $ delta_(i j) = cases(
+    1 quad &"if" i = j\,,
+    0 quad &"if" i != j\,,
+  ) $
+  and is used to express orthonormality and identity matrices.
+]
 
-=== Quadratic Forms
+#definition()[
+  A unitary basis to an Hermitian space is
+  a basis $ve(v)_1, ..., ve(v)_n$ such that
+  $ iprod(ve(v)_i, ve(v)_j) = delta_(i j). $
+]
 
-==== Definition
+#definition()[
+  A matrix $U in CC^(n times n)$ is unitary if its columns form
+  a unitary basis to $CC^n$ or, equivalently,
+  if $U U^* = I$ or $U^(-1) = U^*$.
+]
 
-#image("assets/image-30.png")
+#note-box()[
+  A symmetric matrix is a real Hermitian matrix.
 
-#image("assets/image-31.png")
+  An orthonormal basis is a real unitary basis.
 
-==== Principal Axes
+  An orthogonal matrix is a real unitary matrix.
+]
 
-#image("assets/image-32.png")
+=== The Complex Spectral Theorem
 
-#image("assets/image-33.png")
+#definition()[
+  A matrix $A in CC^(n times n)$ is unitary diagonalizable if there exists
+  a _real_ diagonal matrix $D$ and a unitary matrix $U$ such that
+  $ A = U D U^(-1) = U D U^*. $
 
-==== Definiteness
+  A map of complex vector spaces is unitary diagonalizable if there exists
+  a unitary basis $cal(B)$ such that
+  $[f]_cal(B)$ is a real diagonal matrix.
+]
 
-#image("assets/image-34.png")
+#theorem()[
+  An Hermitian map of a finite-dimensional $CC$ vector space
+  is unitary diagonalizable.
+]
 
-#image("assets/image-35.png")
-
-#image("assets/image-36.png")
+#corollary()[
+  An Hermitian matrix $A in CC^(n times n)$ is unitary diagonalizable.
+  That is,
+  $ A = A^* <==> A = U D U^*. $
+]
 
 = Statistics
 
