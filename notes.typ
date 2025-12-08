@@ -939,6 +939,20 @@ that gives a free
 #lemma()[
   All eigenvalues to Hermitian maps of finite-dimensional Hermitian spaces
   are real.
+
+  #proof[Let $A : V -> V$ be Hermitian and remark that
+    $ iprod(A ve(x), ve(y)) = iprod(ve(x), A ve(y))
+    quad forall ve(x), ve(y) in V. $
+
+    Now if $ve(v)$ is an eigenvector of $A$ with eigenvalue $lambda$, then
+    $ lambda iprod(ve(v), ve(v)) =
+    iprod(A ve(v), ve(v)) =
+    iprod(ve(v), A ve(v)) =
+    dash(lambda) iprod(ve(v), ve(v)). $
+    
+    Since $iprod(ve(v), ve(v)) > 0$ it follows that $lambda = dash(lambda)$,
+    hence $lambda in RR.$
+  ]
 ]
 
 #theorem(title: [The Complex Spectral Theorem])[
