@@ -3,6 +3,7 @@
   course-name: "Linear Algebra",
   course-code: "SF1672",
   title-size: 30pt,
+  subtitle-size: 16pt,
   title-space: 0em, 
 
   size: 12pt,
@@ -10,6 +11,7 @@
   width: 15cm,
   height: auto,
   end-space: 40em,
+  heading-break: false,
 
   language: "en",
   contents: false,
