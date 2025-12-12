@@ -1,5 +1,5 @@
-#import "style.typ": *
-#show: styling.with(
+#import "@local/probonotes:0.1.1": *
+#show: style.with(
   course-name: "Linear Algebra",
   course-code: "SF1672",
   title-size: 30pt,
@@ -10,10 +10,10 @@
   width: 15cm,
   height: auto,
   end-space: 40em,
-  heading-break: false,
-  contents: true,
 
-  memes: false,
+  language: "en",
+  contents: false,
+  memes: true,
 )
 
 #image("assets/image-4.png") <meme>
@@ -47,7 +47,7 @@ TODO:
   + Multiplication distributes over addition:\
     for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
 
-  #example(title: [Examples])[$QQ, RR, CC, RR(x), QQ(i), FF_p$
+  #examples[$QQ, RR, CC, RR(x), QQ(i), FF_p$
   if $p$ is prime.
   ]
 ]
@@ -526,7 +526,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 #definition(title: [Inner Product Space])[
   An inner product space is a vector space and its inner product.
 
-  #example(title: [Examples])[$
+  #examples[$
   V &= RR^n, quad iprod(ve(x), ve(y)) = ve(x) dot ve(y) \
   V &= RR^2, quad iprod((x_1, x_2), (y_1, y_2)) = 3 x_1 y_1 + 5 x_2 y_2 \
   V &= RR^2, quad iprod((x_1, x_2), (y_1, y_2)) =
