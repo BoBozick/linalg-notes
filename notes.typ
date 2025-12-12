@@ -46,6 +46,10 @@ TODO:
   + $(F\\{0}, dot)$ is an abelian group with identity $1$.
   + Multiplication distributes over addition:\
     for all $a, b, c in F$, $a dot (b + c) = a dot b + a dot c$.
+
+  #example(title: [Examples])[$QQ, RR, CC, RR(x), QQ(i), FF_p$
+  if $p$ is prime.
+  ]
 ]
 
 #definition(title: [Vector Space])[
