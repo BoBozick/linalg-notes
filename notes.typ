@@ -184,9 +184,79 @@
 
 #image("assets/image-3.png") <meme>
 
-== Inverse
+== Row Reduction
 
-=== Existence
+=== Echelon Form
+
+#definition(title: [Echelon Form])[
+  - Row Echelon Form (REF): \
+    Pivots move to the right as you go down, with zeros below each pivot.
+
+  - Reduced Row Echelon Form (RREF): \
+    REF plus each pivot is 1 and is the only nonzero entry in its column.
+    Canonical, i.e., unique.
+]
+
+#warning-box()[
+  Some authors also require pivots to start with 1 for REF.
+]
+
+#definition(title: [Consistent])[
+  A linear system $A ve(x) = ve(b)$ is consistent
+  if it has at least one solution.
+  That is, $ve(b) in col A$.
+]
+
+#theorem(title: [Echelon Test])[
+  After reducing $mat(A, |, ve(b))$ to REF or RREF, a system is inconsistent
+  if and only if you obtain a row of the form
+  $ mat(0, 0, dots.h.c, 0, |, c), quad c != 0. $
+]
+
+=== LU Decomposition
+
+#definition(title: [LU Decomposition])[
+  A square matrix $A$ admits an _LU decomposition_ if it can be factored as
+  $ A = L U, $
+  where $L$ is lower triangular (often with ones on the diagonal) and
+  $U$ is upper triangular.
+]
+
+#theorem(title: [LU with Pivoting])[
+  In general one uses partial pivoting:
+  $ P A = L U, $
+  where $P$ is a permutation matrix.
+]
+
+#tip-box(title: [Solving Systems])[
+  $A ve(x)=ve(b)$ solved by $P A = L U$:
+  + Compute $P A = L U$ once.
+  + Solve $L ve(y) = P ve(b)$ (forward substitution).
+  + Solve $U ve(x) = ve(y)$ (back substitution).
+]
+
+#note-box()[
+  Solving systems through substitution after LU decomposition is $cal(O)(n^2)$
+  while Gaussian elimination of the original matrix is $cal(O)(n^3)$.
+]
+
+=== The Column Space
+
+#definition(title: [Column Space])[
+  $ col(A) = span{ve(v)_1, ..., ve(v)_n} = im(f_A), $
+  where $ve(v)_1, ..., ve(v)_n$ are the columns of $A$.
+]
+
+#theorem(title: [Pivot Basis])[
+  The pivot columns of a matrix form a basis for its column space.
+]
+
+#theorem()[
+  The column space is affected by row reduction but not by column reduction,
+  and vice versa for the row space.
+]
+
+=== Matrix Inverse
 
 #definition(title: [Singular])[
   A matrix is singular if it is square and non-invertible.
@@ -230,49 +300,6 @@
     \ \
   + $A$ has $n$ nonzero singular values
   + $det A != 0$
-]
-
-=== Row Reduction
-
-#definition(title: [Echelon Form])[
-  - Row Echelon Form (REF): \
-    Pivots move to the right as you go down, with zeros below each pivot.
-
-  - Reduced Row Echelon Form (RREF): \
-    REF plus each pivot is 1 and is the only nonzero entry in its column.
-    Canonical, i.e., unique.
-]
-
-#warning-box()[
-  Some authors also require pivots to start with 1 for REF.
-]
-
-#definition(title: [Consistent])[
-  A linear system $A ve(x) = ve(b)$ is consistent
-  if it has at least one solution.
-  That is, $ve(b) in col A$.
-]
-
-#theorem(title: [Echelon Test])[
-  After reducing $mat(A, |, ve(b))$ to REF or RREF, a system is inconsistent
-  if and only if you obtain a row of the form
-  $ mat(0, 0, dots.h.c, 0, |, c), quad c != 0. $
-]
-
-== Column and Row Spaces
-
-#definition(title: [Column Space])[
-  $ col(A) = span{ve(v)_1, ..., ve(v)_n} = im(f_A), $
-  where $ve(v)_1, ..., ve(v)_n$ are the columns of $A$.
-]
-
-#theorem(title: [Pivot Basis])[
-  The pivot columns of a matrix form a basis for its column space.
-]
-
-#theorem(title: [Orthogonal Complements])[
-  For any matrix $A$,
-  $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
 
 == Determinants
@@ -518,7 +545,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
     That is, the ratio limit is the root of largest magnitude.
 ]
 
-== Analysis Repetition
+== Repetition of Real Analysis
 
 === Definitions
 
@@ -549,7 +576,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   The limit of a sequence, if it exists, is unique.
 ]
 
-=== Bounded
+=== Bounded Sequences
 
 #definition(title: [Bounded])[
   A sequence is _bounded_ if
@@ -570,7 +597,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   whose limit point is in $K$.
 ] <thm:bolzano-weierstrass>
 
-=== Cauchy
+=== Cauchy Sequences
 
 #definition(title: [Cauchy Sequence])[
   A sequence $(a_n)$ is a _Cauchy sequence_ if
@@ -768,6 +795,11 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
   $ vec(ve(x))_B = vec(iprod(ve(x), ve(b)_1), dots.v, iprod(ve(x), ve(b)_n)). $
   
   #proof // TODO
+]
+
+#theorem(title: [Orthogonal Complements])[
+  For any matrix $A$,
+  $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
 
 = Eigenvalues and Eigenvectors
