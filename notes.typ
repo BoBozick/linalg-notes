@@ -14,15 +14,11 @@
   heading-break: false,
 
   language: "en",
-  contents: false,
-  memes: true,
+  contents: true,
+  memes: false,
 )
 
 #image("assets/image-4.png") <meme>
-
-TODO:
-- recursive sequences
-- LU factorization
 
 = Vector Spaces
 
@@ -499,6 +495,91 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
   Then, $im T$ is finite-dimensional and
   $ dim ker T + dim im T = dim V. $
+]
+
+= Sequences
+
+== Linear
+
+#theorem(title: [Linear Recurrences of Order Two])[
+  Given $ a_n = c_1 a_(n-1) + c_2 a_(n-2) $
+  + Solve $ r^2 - c_1 r - c_2 = 0 $
+  + If distinct roots:
+    $ a_n = A r_1^n + B r_2^n $
+    If repeated roots:
+    $ a_n = (A + B n)r_0^n $
+    If complex roots:
+    $ a_n = R^n (A cos(n theta) + B sin (n theta)) $
+  + Determine constants $A$ and $B$ from $a_1$ and $a_0$.
+  + For asymptotics find the root $r$ of largest magnitude with
+    some coefficient $C$ and use that
+    $a_n tilde C r^n$ for large $n$ to calculate
+    $ lim_(n->oo) a_(n+1) / a_n = r. $
+    That is, the ratio limit is the root of largest magnitude.
+]
+
+== Analysis Repetition
+
+=== Sequences
+
+#definition(title: [Sequence])[
+  A _sequence_ is a function whose domain is $NN.$
+]
+
+#definition(title: [Convergence])[
+  A sequence _converges_ to $a$ if
+  $ forall epsilon > 0 space exists N in NN :
+  n >= N ==> |a_n - a| < epsilon $
+  or equivalently if for any $V_epsilon (a)$ there exists a point
+  in the sequence after which all terms are in $V_epsilon (a)$.
+  In other words, if every $epsilon$-neighborhood of some point
+  contains all but a finite number of the terms in $(a_n)$.
+
+  We write this $lim_(n->infinity) a_n = lim a_n = a$ or $a_n -> a$.
+
+  #example[Template of a typical convergence proof:
+    + Let $epsilon > 0$ be arbitrary.
+    + Propose an $N in NN$ (found before writing the proof).
+    + Assume $n >= N$.
+    4. Show that $|a_n - a| < epsilon.$
+  ]
+]
+
+#theorem(title: [Uniqueness of Limits])[
+  The limit of a sequence, if it exists, is unique.
+]
+
+=== Bounded
+
+#definition(title: [Bounded])[
+  A sequence is _bounded_ if
+  $exists M > 0 : |a_n| < M space forall n in NN$.
+]
+
+#theorem(title: [Convergent])[
+  Every convergent sequence is bounded.
+
+  If a sequence is monotone and bounded it converges.
+
+  Subsequences of a convergent sequence converge to the same limit.
+]
+
+#theorem(title: [Bolzano--Weierstrass])[
+  In a compact set $K subset RR$,
+  every bounded sequence contains a convergent subsequence
+  whose limit point is in $K$.
+] <thm:bolzano-weierstrass>
+
+=== Cauchy
+
+#definition(title: [Cauchy Sequence])[
+  A sequence $(a_n)$ is a _Cauchy sequence_ if
+  $ forall epsilon > 0 space exists N in NN :
+  m, n >= N ==> |a_n - a_m| < epsilon. $
+]
+
+#theorem(title: [Cauchy Criterion])[
+  A sequence converges if and only if it is a Cauchy sequence.
 ]
 
 = Orthogonality
