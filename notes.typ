@@ -520,7 +520,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 
 == Analysis Repetition
 
-=== Sequences
+=== Definitions
 
 #definition(title: [Sequence])[
   A _sequence_ is a function whose domain is $NN.$
