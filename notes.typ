@@ -1,4 +1,4 @@
-#import "@local/probonotes:0.1.1": *
+#import "@local/probonotes:0.1.2": *
 #show: style.with(
   course-name: "Linear Algebra",
   course-code: "SF1672",
@@ -534,9 +534,11 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   + If distinct roots:
     $ a_n = A r_1^n + B r_2^n $
     If repeated roots:
-    $ a_n = (A + B n)r_0^n $
+    $ a_n = (A + B n)r^n $
     If complex roots:
-    $ a_n = R^n (A cos(n theta) + B sin (n theta)) $
+    $ a_n = R^n (A cos(n theta) + B sin (n theta)), $
+    where $R = sqrt(alpha^2 + beta^2)$
+    is the norm of $r = alpha plus.minus i beta$.
   + Determine constants $A$ and $B$ from $a_1$ and $a_0$.
   + For asymptotics find the root $r$ of largest magnitude with
     some coefficient $C$ and use that
@@ -692,6 +694,10 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
   The zero-vector is orthogonal to all vectors.
 ]
 
+#definition()[
+  Planes are said to be orthogonal if their normal vectors are orthogonal.
+]
+
 == Projection
 
 === Intersections
@@ -714,6 +720,7 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 ]
 
 === Orthogonal Basis
+
 #definition(title: [Orthogonal Projection])[
   The projection of $ve(y)$ onto $W$ is the $hve(y)$ in $W$ such that
   $ ve(y) - hve(y) ort W. $
@@ -844,6 +851,17 @@ that gives a free
   then they are linearly independent.
 ]
 
+#definition(title: [Trace])[
+  The _trace_ of an $n times n$ matrix $A = (a_(i j))$
+  is the sum of its diagonal entries:
+  $ tr A = sum_(i=1)^n a_(i i). $
+
+  Basic properties:
+  + (Linearity) $tr(A + B) = tr A + tr B$ and $tr(c A) = c tr A$.
+  + (Cyclic) $tr(A B) = tr(B A)$ (when both products are defined).
+  + (Similarity) $tr(P^(-1) A P) = tr A$ for invertible $P$.
+]
+
 == Real
 
 === Diagonalization
@@ -912,6 +930,10 @@ that gives a free
 === Definition
 
 #image("assets/image-30.png")
+
+#important-box()[
+  Any symmetric matrix has a valid quadratic form.
+]
 
 #image("assets/image-31.png")
 
