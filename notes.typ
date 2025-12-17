@@ -1,4 +1,4 @@
-#import "@local/probonotes:0.1.2": *
+#import "@local/probonotes:0.1.3": *
 #show: style.with(
   course-name: "Linear Algebra",
   course-code: "SF1672",
@@ -19,6 +19,16 @@
 )
 
 #image("assets/image-4.png") <meme>
+
+TODO // TODO remove when finished
+- onenote notes
+- dual room
+
+Tentauppgifter
+- #link("https://canvas.kth.se/courses/57233/files/9422936/download?download_frd=1")[2020-04-17: 8]
+- #link("file:///C:/Users/bo/Downloads/SF1672Losning20210112.pdf")[2021-01-12: 8(ii)]
+- #link("https://canvas.kth.se/courses/27068/files/5168394/download?download_frd=1")[2022-01-13: 8]
+- 2022-04-19
 
 = Vector Spaces
 
@@ -931,7 +941,7 @@ that gives a free
 
 #image("assets/image-30.png")
 
-#important-box()[
+#note-box()[
   Any symmetric matrix has a valid quadratic form.
 ]
 
@@ -971,7 +981,7 @@ that gives a free
 #definition(title: [Hermitian Form])[
   A Hermitian form $iprod(-, -) : V times V -> CC$ is
   a bilinear form on a complex vector space with the following properties:
-  + $RR$ bilinearity, i.e.,
+  + $RR$ bilinearity:
     - $iprod(a ve(u) + b ve(v), ve(w)) =
       a iprod(ve(u), ve(w)) + b iprod(ve(v), ve(w))$
     - $iprod(ve(u), a ve(v) + b ve(w)) = 
@@ -994,7 +1004,7 @@ that gives a free
 ]
 
 #note-box()[
-  The complex transpose (also called Hermitian transpose) is notated
+  The conjugate transpose (also called Hermitian transpose) is notated
   $A^*, A^"H", A' "or" A^dagger$.
 ]
 
