@@ -21,18 +21,22 @@
 #image("assets/image-4.png") <meme>
 
 TODO // TODO remove when finished
-- onenote notes
-- dual room
+
+Learn
+- dual spaces
 
 Tentauppgifter
 - #link("https://canvas.kth.se/courses/57233/files/9422936/download?download_frd=1")[2020-04-17: 8]
 - #link("file:///C:/Users/bo/Downloads/SF1672Losning20210112.pdf")[2021-01-12: 8(ii)]
 - #link("https://canvas.kth.se/courses/27068/files/5168394/download?download_frd=1")[2022-01-13: 8]
 - 2022-04-19
+- 2023-01-12
 
-= Vector Spaces
+= Linearity
 
-== Definitions
+== Vector Spaces
+
+=== Definitions
 
 #definition(title: [Group])[
   A _group_ is a set $G$ with a binary operation $*$ such that
@@ -84,7 +88,14 @@ Tentauppgifter
 
 #image("assets/image.png")
 
-== Subspaces
+#definition(title: [Tuple])[
+  A tuple (or sometimes _list_) is a finite, ordered collection of elements,
+  possibly with repetitions.
+  
+  An $n$-tuple is a tuple of length $n$.
+]
+
+=== Subspaces
 
 #definition(title: [Subspace])[
   A subspace of a vector space $V$ is a subset $H$ that is
@@ -111,7 +122,7 @@ Tentauppgifter
   then $span{ve(v)_1, ..., ve(v)_p}$ is a subspace of $V$.
 ]
 
-== Bases
+=== Bases
 
 #definition(title: [Basis])[
   A basis for a vector space $V$ is a set $B = {ve(b)_1, ..., ve(b)_n}$
@@ -166,8 +177,7 @@ Tentauppgifter
   ~ mat(I, |, ve(v)_1, ve(v)_2). $
 ]
 
-
-== Dimension
+=== Dimension
 
 #definition(title: [Dimension])[
   The dimension of a vector space is the number of vectors in every basis.
@@ -189,6 +199,103 @@ Tentauppgifter
   For an $m times n$ matrix $A$ it holds that
   $ rank A + nullity A = n. $
 ]
+
+== Linear Maps
+
+=== Definitions
+
+#definition(title: [Linear Map])[
+  A map $T : V -> W$ is _linear_ if
+  $ T(a ve(u) + b ve(v)) = a T(ve(u)) + b T(ve(v)) $
+  for all $ve(u), ve(v) in V$ and $a, b in RR$.
+  In other words, the function satisfies additivity and homogenity.
+
+  If $W = V$, then $T$ is said to be an _operator_.
+  Else if $W = F$, then $T$ is said to be a _functional_.
+]
+
+#theorem()[
+  Any linear map $T$ has an associated matrix $cal(M)(T).$
+]
+
+#definition(title: [Affine])[
+  A map $f$ is affine if it can be written as
+  $ f(x) = A x + b $
+  or, equivalently, if the map $g$ defined by
+  $ g(x) = f(x) - f(0) $
+  is linear.
+]
+
+=== Dimensions
+
+#theorem()[
+  A map to a smaller dimensional space cannot be injective.
+
+  A map to a larger dimensional space cannot be surjective.
+
+  This also holds for non-linear maps.
+]
+
+#theorem(title: [Left/Right Inverse])[
+  If a linear map has a right inverse then it is surjective,
+  if it has a left inverse then it is injective,
+  and if it has both it is bijective.
+]
+
+#theorem()[
+  A linear map $T : V -> W$ is bijective if it is
+  + injective ($ker T = {ve(0)}$) and
+  + surjective ($im T = W$).
+
+  This is equivalent to $T$ having a linear inverse $T^(-1) : W -> V$.
+
+  If $V$ is finite-dimensional, then $T$ being
+  injective, surjective, or invertible is equivalent.
+]
+
+#definition(title: [Isomorphism])[
+  A map $T : V -> W$ is an _isomorphism_ if it is
+  + bijective and linear or, equivalently,
+  + invertible.
+
+  If such a map exists, the spaces _isomorphic_, written $V tilde.equiv W$.
+  This means that the difference between them is the choice of basis.
+
+  If $V = W$, then $T$ is an _automorphism_.
+]
+
+#theorem()[
+  Two finite dimensional vectors spaces over $F$ are isomorphic if and only if
+  they have the same dimension.
+]
+
+#image("assets/image-1.png", height: 10cm) <meme>
+
+=== Dual Spaces
+
+#theorem()[
+  $dim cal(L)(V, W) = (dim V)(dim W)$
+]
+
+#theorem()[
+  The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
+]
+
+#theorem(title:[Fundamental Theorem of Linear Maps])[
+  Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
+  Then, $im T$ is finite-dimensional and
+  $ dim ker T + dim im T = dim V. $
+]
+
+=== Isometries
+
+#definition(title: [Isometry])[
+  Simply put, an isometry is a linear map that preserves norms.
+]
+
+#image("assets/image-37.png")
+
+#image("assets/image-38.png")
 
 = Matrices
 
@@ -250,7 +357,7 @@ Tentauppgifter
   while Gaussian elimination of the original matrix is $cal(O)(n^3)$.
 ]
 
-=== The Column Space
+=== Column Space
 
 #definition(title: [Column Space])[
   $ col(A) = span{ve(v)_1, ..., ve(v)_n} = im(f_A), $
@@ -455,190 +562,21 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 
 #image("assets/image-23.png")
 
-= Linear Maps
-
-== Definitions
-
-#definition(title: [Linear Map])[
-  A map $T : V -> W$ is _linear_ if
-  $ T(a ve(u) + b ve(v)) = a T(ve(u)) + b T(ve(v)) $
-  for all $ve(u), ve(v) in V$ and $a, b in RR$.
-  In other words, the function satisfies additivity and homogenity.
-
-  If $W = V$, then $T$ is said to be an _operator_.
-  Else if $W = F$, then $T$ is said to be a _functional_.
-]
-
-#theorem()[
-  Any linear map $T$ has an associated matrix $cal(M)(T).$
-]
-
-#theorem()[
-  A linear map $T : V -> W$ is bijective if it is
-  + injective ($ker T = {ve(0)}$) and
-  + surjective ($im T = W$).
-
-  This is equivalent to $T$ having a linear inverse $T^(-1) : W -> V$.
-
-  If $V$ is finite-dimensional, then $T$ being
-  injective, surjective, or invertible is equivalent.
-]
-
-#definition(title: [Isomorphism])[
-  A map $T : V -> W$ is an _isomorphism_ if it is
-  + bijective and linear or, equivalently,
-  + invertible.
-
-  If such a map exists, the spaces _isomorphic_, written $V tilde.equiv W$.
-  This means that the difference between them is the choice of basis.
-
-  If $V = W$, then $T$ is an _automorphism_.
-]
-
-#theorem()[
-  Two finite dimensional vectors spaces over $F$ are isomorphic if and only if
-  they have the same dimension.
-]
-
-#image("assets/image-1.png", height: 10cm) <meme>
-
-#definition(title: [Affine])[
-  A map $f$ is affine if it can be written as
-  $ f(x) = A x + b $
-  or, equivalently, if the map $g$ defined by
-  $ g(x) = f(x) - f(0) $
-  is linear.
-]
-
-== Properties
-
-#theorem(title: [Left/Right Inverse])[
-  If a linear map has a right inverse then it is surjective,
-  if it has a left inverse then it is injective,
-  and if it has both it is bijective.
-]
-
-== In Vector Spaces
-
-#theorem()[
-  $dim cal(L)(V, W) = (dim V)(dim W)$
-]
-
-#theorem()[
-  The set of all linear maps $cal(L)(V, W)$ from $V$ to $W$ is a vector space.
-]
-
-#theorem(title:[Fundamental Theorem of Linear Maps])[
-  Suppose $V$ is finite-dimensional and $T in cal(L)(V, W)$.
-  Then, $im T$ is finite-dimensional and
-  $ dim ker T + dim im T = dim V. $
-]
-
-= Sequences
-
-== Linear
-
-#theorem(title: [Linear Recurrences of Order Two])[
-  Given $ a_n = c_1 a_(n-1) + c_2 a_(n-2) $
-  + Solve $ r^2 - c_1 r - c_2 = 0 $
-  + If distinct roots:
-    $ a_n = A r_1^n + B r_2^n $
-    If repeated roots:
-    $ a_n = (A + B n)r^n $
-    If complex roots:
-    $ a_n = R^n (A cos(n theta) + B sin (n theta)), $
-    where $R = sqrt(alpha^2 + beta^2)$
-    is the norm of $r = alpha plus.minus i beta$.
-  + Determine constants $A$ and $B$ from $a_1$ and $a_0$.
-  + For asymptotics find the root $r$ of largest magnitude with
-    some coefficient $C$ and use that
-    $a_n tilde C r^n$ for large $n$ to calculate
-    $ lim_(n->oo) a_(n+1) / a_n = r. $
-    That is, the ratio limit is the root of largest magnitude.
-]
-
-== Repetition of Real Analysis
-
-=== Definitions
-
-#definition(title: [Sequence])[
-  A _sequence_ is a function whose domain is $NN.$
-]
-
-#definition(title: [Convergence])[
-  A sequence _converges_ to $a$ if
-  $ forall epsilon > 0 space exists N in NN :
-  n >= N ==> |a_n - a| < epsilon $
-  or equivalently if for any $V_epsilon (a)$ there exists a point
-  in the sequence after which all terms are in $V_epsilon (a)$.
-  In other words, if every $epsilon$-neighborhood of some point
-  contains all but a finite number of the terms in $(a_n)$.
-
-  We write this $lim_(n->infinity) a_n = lim a_n = a$ or $a_n -> a$.
-
-  #example[Template of a typical convergence proof:
-    + Let $epsilon > 0$ be arbitrary.
-    + Propose an $N in NN$ (found before writing the proof).
-    + Assume $n >= N$.
-    4. Show that $|a_n - a| < epsilon.$
-  ]
-]
-
-#theorem(title: [Uniqueness of Limits])[
-  The limit of a sequence, if it exists, is unique.
-]
-
-=== Bounded Sequences
-
-#definition(title: [Bounded])[
-  A sequence is _bounded_ if
-  $exists M > 0 : |a_n| < M space forall n in NN$.
-]
-
-#theorem(title: [Convergent])[
-  Every convergent sequence is bounded.
-
-  If a sequence is monotone and bounded it converges.
-
-  Subsequences of a convergent sequence converge to the same limit.
-]
-
-#theorem(title: [Bolzano--Weierstrass])[
-  In a compact set $K subset RR$,
-  every bounded sequence contains a convergent subsequence
-  whose limit point is in $K$.
-] <thm:bolzano-weierstrass>
-
-=== Cauchy Sequences
-
-#definition(title: [Cauchy Sequence])[
-  A sequence $(a_n)$ is a _Cauchy sequence_ if
-  $ forall epsilon > 0 space exists N in NN :
-  m, n >= N ==> |a_n - a_m| < epsilon. $
-]
-
-#theorem(title: [Cauchy Criterion])[
-  A sequence converges if and only if it is a Cauchy sequence.
-]
-
 = Orthogonality
 
 == Inner Products
 
 #definition(title: [Inner Product])[
-  The inner product for a real vector space $V$ is function
-  $ iprod(ve(u), ve(v)) : V times V -> RR $
+  The inner product on a real or complex vector space $V$ is function
+  $ iprod(ve(u), ve(v)) : V times V -> F $
   with
-  + bilinearity
-  + symmetry
+  + linearity in the first argument: 
+    $ iprod(a ve(u) + b ve(v), ve(w)) =
+    a iprod(ve(u), ve(w)) + b iprod(ve(v), ve(w)) $
+  + conjugate symmetry: $iprod(ve(u), ve(v)) = dash(iprod(ve(v), ve(u)))$
   + positive-definiteness:
     $iprod(ve(v), ve(v)) = 0$ if $ve(v) = ve(0)$ else
     $iprod(ve(v), ve(v)) > 0$
-
-  More generally for any vector space, the function must have
-  + linearity in the first argument
-  + conjugate symmetry: $iprod(ve(u), ve(v)) = dash(iprod(ve(v), ve(u)))$
-  + positive-definiteness
 ]
 
 #warning-box[
@@ -666,6 +604,10 @@ finite area in $RR^2$ or finite volume in $RR^3$.
   $ norm(ve(x)) = sqrt(iprod(ve(x), ve(x))). $
 ]
 
+#theorem()[
+  $ norm(lambda ve(x)) = abs(lambda) norm(ve(x)) $
+]
+
 #definition(title: [Unit Vector])[
   A unit vector is one whose norm is 1.
 ]
@@ -673,7 +615,7 @@ finite area in $RR^2$ or finite volume in $RR^3$.
 Let $V$ be a an inner product space over $RR$ or $CC$.
 
 #lemma()[
-  Given a $ve(v)$ in an product product space $V$
+  Given a $ve(v)$ in an inner product space $V$
   and given a finite-dimensional subspace $W$,
   the Pythagorean Theorem in conjunction with
   the orthogonal decomposition of $ve(v)$ with respect to $W$ yields
@@ -686,6 +628,10 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 #theorem(title: [The Cauchy--Schwarz Inequality])[
   For all $ve(u), ve(v) in V$,
   $ |iprod(ve(u), ve(v))| <= norm(ve(u)) norm(ve(v)). $
+
+  #example[The scalar product in $RR^n$ fulfills
+    $ (ve(u) dot ve(v))^2 <= (ve(u) dot ve(u))(ve(v) dot ve(v)). $
+  ]
 ]
 
 #theorem(title: [The Triangle Inequality])[
@@ -710,7 +656,7 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
 
 == Projection
 
-=== Intersections
+=== In $RR^3$
 
 #tip-box(title: [Finding Intersections])[
   - line--plane
@@ -727,6 +673,12 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
     given in parametric form.
     Set its dot product with each plane's normal vector to zero.
     Solve the resulting system of equations.
+]
+
+#theorem()[
+  A map $T : RR^3 -> RR^3$ that reflects a point through a plane
+  has the matrix representation
+  $ [T] = I - 2/(norm(ve(n))^2) ve(n) ve(n)^T. $
 ]
 
 === Orthogonal Basis
@@ -819,9 +771,9 @@ Let $V$ be a an inner product space over $RR$ or $CC$.
   $ (row A)^ort = ker A quad "and" quad (col A)^ort = coker A. $
 ]
 
-= Eigenvalues and Eigenvectors
+= Spectral Theory
 
-== Of Matrices
+== Matrices
 
 #definition(title: [Eigenstuff])[
   An eigenvalue $lambda$ of matrix $A in CC^(n times n)$ satisfies
@@ -1117,9 +1069,11 @@ that gives a free
   $ A = A^* <==> A = U D U^*. $
 ]
 
-= Statistics
+= Applications
 
-== Linear Regression
+== Statistics
+
+=== Linear Regression
 
 $X ve(beta) = ve(y)$,
 where $X$ is the design matrix,
@@ -1143,7 +1097,7 @@ $ X^T X ve(beta) = X^T ve(y). $
 
 #image("assets/image-19.png")
 
-== Markov Chains
+=== Markov Chains
 
 #definition(title: [Markov Chain])[
   A Markov chain is a sequence of random variables
@@ -1173,3 +1127,92 @@ $ X^T X ve(beta) = X^T ve(y). $
   distribution after $k$ steps is
   $ ve(pi)^(k) = ve(pi)^(0) P^k. $
 ]
+
+== Linear Sequences
+
+#theorem(title: [Linear Recurrences of Order Two])[
+  Given $ a_n = c_1 a_(n-1) + c_2 a_(n-2) $
+  + Solve $ r^2 - c_1 r - c_2 = 0 $
+  + If distinct roots:
+    $ a_n = A r_1^n + B r_2^n $
+    If repeated roots:
+    $ a_n = (A + B n)r^n $
+    If complex roots:
+    $ a_n = R^n (A cos(n theta) + B sin (n theta)), $
+    where $R = sqrt(alpha^2 + beta^2)$
+    is the norm of $r = alpha plus.minus i beta$.
+  + Determine constants $A$ and $B$ from $a_1$ and $a_0$.
+  + For asymptotics find the root $r$ of largest magnitude with
+    some coefficient $C$ and use that
+    $a_n tilde C r^n$ for large $n$ to calculate
+    $ lim_(n->oo) a_(n+1) / a_n = r. $
+    That is, the ratio limit is the root of largest magnitude.
+]
+
+= Repetition of Real Analysis
+
+== Sequences
+
+=== Definitions
+
+#definition(title: [Sequence])[
+  A _sequence_ is a function whose domain is $NN.$
+]
+
+#definition(title: [Convergence])[
+  A sequence _converges_ to $a$ if
+  $ forall epsilon > 0 space exists N in NN :
+  n >= N ==> |a_n - a| < epsilon $
+  or equivalently if for any $V_epsilon (a)$ there exists a point
+  in the sequence after which all terms are in $V_epsilon (a)$.
+  In other words, if every $epsilon$-neighborhood of some point
+  contains all but a finite number of the terms in $(a_n)$.
+
+  We write this $lim_(n->infinity) a_n = lim a_n = a$ or $a_n -> a$.
+
+  #example[Template of a typical convergence proof:
+    + Let $epsilon > 0$ be arbitrary.
+    + Propose an $N in NN$ (found before writing the proof).
+    + Assume $n >= N$.
+    4. Show that $|a_n - a| < epsilon.$
+  ]
+]
+
+#theorem(title: [Uniqueness of Limits])[
+  The limit of a sequence, if it exists, is unique.
+]
+
+=== Bounded Sequences
+
+#definition(title: [Bounded])[
+  A sequence is _bounded_ if
+  $exists M > 0 : |a_n| < M space forall n in NN$.
+]
+
+#theorem(title: [Convergent])[
+  Every convergent sequence is bounded.
+
+  If a sequence is monotone and bounded it converges.
+
+  Subsequences of a convergent sequence converge to the same limit.
+]
+
+#theorem(title: [Bolzano--Weierstrass])[
+  In a compact set $K subset RR$,
+  every bounded sequence contains a convergent subsequence
+  whose limit point is in $K$.
+] <thm:bolzano-weierstrass>
+
+=== Cauchy Sequences
+
+#definition(title: [Cauchy Sequence])[
+  A sequence $(a_n)$ is a _Cauchy sequence_ if
+  $ forall epsilon > 0 space exists N in NN :
+  m, n >= N ==> |a_n - a_m| < epsilon. $
+]
+
+#theorem(title: [Cauchy Criterion])[
+  A sequence converges if and only if it is a Cauchy sequence.
+]
+
+
