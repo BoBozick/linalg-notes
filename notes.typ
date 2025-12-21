@@ -32,6 +32,10 @@ Tentauppgifter
 - 2022-04-19
 - 2023-01-12
 
+#image("assets/image-39.png")
+
+#image("assets/image-40.png")
+
 = Linearity
 
 == Vector Spaces
@@ -813,7 +817,7 @@ that gives a free
   then they are linearly independent.
 ]
 
-#definition(title: [Trace])[
+#definition(title: [Trace of a Matrix])[
   The _trace_ of an $n times n$ matrix $A = (a_(i j))$
   is the sum of its diagonal entries:
   $ tr A = sum_(i=1)^n a_(i i). $
@@ -822,6 +826,18 @@ that gives a free
   + (Linearity) $tr(A + B) = tr A + tr B$ and $tr(c A) = c tr A$.
   + (Cyclic) $tr(A B) = tr(B A)$ (when both products are defined).
   + (Similarity) $tr(P^(-1) A P) = tr A$ for invertible $P$.
+  + (Eigenvalues) $tr A = sum_(i=1)^n lambda_i$ where $lambda_1, ..., lambda_n$
+    are the eigenvalues of $A$ counted with algebraic multiplicity.
+]
+
+#definition(title: [Trace of an Operator])[
+  Let $V$ be a finite-dimensional vector space and $T: V -> V$ be linear.
+  Choose a basis $cal(B)$ and let $[T]_cal(B)$ be the matrix of $T$ in $cal(B)$.
+  The _trace_ of $T$ is defined by
+  $ tr(T) := tr([T]_cal(B)). $
+
+  This is well-defined (independent of the choice of basis) since if
+  $[T]_cal(C) = P^(-1) [T]_cal(B) P$ then $tr([T]_cal(C)) = tr([T]_cal(B)).$
 ]
 
 == Real
